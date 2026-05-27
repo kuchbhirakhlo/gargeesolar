@@ -16,7 +16,7 @@ export function Footer() {
               Gargee Solar is a leading provider of Gargee Solar , helping homes and businesses transition to clean, renewable energy. We specialize in residential and commercial solar installations, maintenance, and support services.
             </p>
             <p className="text-white/80 text-sm">
-              <strong>Address:</strong> Lucknow, Uttar Pradesh<br />
+              <strong>Address:</strong> Near Sikrori, Baj Nager, Sikrauri, Amethiasalempur, Uttar Pradesh 226101<br />
               <strong>Email:</strong> gargeeenterprisesmld@gmail.com<br />
               <strong>Phone:</strong> 9695902026 / 9935857010
             </p>

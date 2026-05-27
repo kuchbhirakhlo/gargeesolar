@@ -971,8 +971,8 @@ export default function QuotationPage() {
                  </div>
                 <div className="text-center">
                   <p><strong>Second Party</strong></p>
-                  <p>M.G. ENTERPRISES</p>
-                  <img src="/mohar.png" alt="Authorised Signatory MG Enterprises" width={100} height={50} className="mt-2" />
+                  <p>Gargee Solar Lucknow</p>
+                  <img src="/mohar.png" alt="Authorised Signatory Gargee Solar Lucknow" width={100} height={50} className="mt-2" />
                   <p className="mt-4">Sign:</p>
                   <p>___________________________</p>
                 </div>

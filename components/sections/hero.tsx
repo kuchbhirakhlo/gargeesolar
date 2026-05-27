@@ -125,7 +125,7 @@ export function HeroSection() {
           <div className="flex-1 lg:flex-none lg:w-2/5 relative">
             <div className="relative h-64 lg:h-80 xl:h-96 max-w-md mx-auto lg:mx-0">
               <video
-                src="/animate.mp4"
+                src="/herovideo.mp4"
                 autoPlay
                 muted
                 loop
@@ -229,7 +229,7 @@ export function HeroSection() {
                   <div>
                     <input
                       type="text"
-                      placeholder="How Much KW Solar (Optional)"
+                      placeholder="Solar Required (in kW)"
                       value={formData.kw}
                       onChange={(e) => setFormData({ ...formData, kw: e.target.value })}
                       className="w-full text-gray-800 px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"

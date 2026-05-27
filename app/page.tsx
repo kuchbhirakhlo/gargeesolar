@@ -46,14 +46,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://mgsolar.co.in'), // Assuming domain
+  metadataBase: new URL('https://gargeesolar.in'), // Assuming domain
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'M.G. Enterprises - Solar Panel Experts in Lucknow',
     description: 'Professional solar panel installation and dealer services in Lucknow, Uttar Pradesh. Quality solar solutions for your home and business.',
-    url: 'https://mgsolar.co.in',
+    url: 'https://gargeesolar.in',
     siteName: 'M.G. Enterprises',
     locale: 'en_US',
     type: 'website',
@@ -94,7 +94,7 @@ export default function Home() {
     "@type": "LocalBusiness",
     "name": "M.G. Enterprises",
     "description": "Leading solar panel dealer and installer in Lucknow, Uttar Pradesh. Providing high-quality solar panels, installation services, and renewable energy solutions.",
-    "url": "https://mgsolar.co.in",
+    "url": "https://gargeesolar.in",
     "telephone": "+91-9695902026",
     "email": "gargeeenterprisesmld@gmail.com",
     "address": {

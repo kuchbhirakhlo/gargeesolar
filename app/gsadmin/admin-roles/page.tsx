@@ -51,28 +51,28 @@ export default function AdminRolesPage() {
     const sampleAdmins = [
       {
         name: 'Super Admin',
-        email: 'superadmin@mgsolar.com',
+        email: 'superadmin@gargeesolar.in',
         role: 'super_admin' as const,
         permissions: ['all'],
         createdAt: new Date().toISOString(),
       },
       {
         name: 'John Admin',
-        email: 'admin@mgsolar.com',
+        email: 'admin@gargeesolar.in',
         role: 'admin' as const,
         permissions: ['customers', 'employees', 'projects', 'payments', 'messages', 'careers'],
         createdAt: new Date().toISOString(),
       },
       {
         name: 'Sarah Manager',
-        email: 'manager@mgsolar.com',
+        email: 'manager@gargeesolar.in',
         role: 'manager' as const,
         permissions: ['customers', 'projects', 'payments', 'messages'],
         createdAt: new Date().toISOString(),
       },
       {
         name: 'Mike Employee',
-        email: 'employee@mgsolar.com',
+        email: 'employee@gargeesolar.in',
         role: 'employee' as const,
         permissions: ['customers_read', 'messages_read'],
         createdAt: new Date().toISOString(),

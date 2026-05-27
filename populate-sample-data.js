@@ -68,7 +68,7 @@ async function populateSampleData() {
       {
         mobileNumber: '9876543210',
         name: 'John Doe',
-        email: 'john.doe@mgsolar.com',
+        email: 'john.doe@gargeesolar.in',
         password: 'password123',
         empId: 'EMP001',
         role: 'employee',
@@ -77,7 +77,7 @@ async function populateSampleData() {
       {
         mobileNumber: '9876543211',
         name: 'Jane Smith',
-        email: 'jane.smith@mgsolar.com',
+        email: 'jane.smith@gargeesolar.in',
         password: 'password123',
         empId: 'EMP002',
         role: 'engineer',
@@ -86,7 +86,7 @@ async function populateSampleData() {
       {
         mobileNumber: '9876543212',
         name: 'Bob Johnson',
-        email: 'bob.johnson@mgsolar.com',
+        email: 'bob.johnson@gargeesolar.in',
         password: 'password123',
         empId: 'EMP003',
         role: 'employee',
@@ -95,7 +95,7 @@ async function populateSampleData() {
       {
         mobileNumber: '9876543213',
         name: 'Alice Wilson',
-        email: 'alice.wilson@mgsolar.com',
+        email: 'alice.wilson@gargeesolar.in',
         password: 'password123',
         empId: 'EMP004',
         role: 'engineer',
@@ -112,7 +112,7 @@ async function populateSampleData() {
       {
         mobileNumber: '9876543215',
         name: 'Diana Prince',
-        email: 'diana.prince@mgsolar.com',
+        email: 'diana.prince@gargeesolar.in',
         password: 'password123',
         empId: 'EMP006',
         role: 'engineer',

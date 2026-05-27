@@ -9,7 +9,7 @@ service cloud.firestore {
     function isAdmin() {
       return isAuthenticated() && request.auth.token.email in [
         // Add admin email addresses here
-        'admin@mgsolar.com' // Replace with actual admin emails
+        'admin@gargeesolar.in' // Replace with actual admin emails
       ];
     }
 

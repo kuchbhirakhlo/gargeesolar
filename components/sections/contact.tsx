@@ -49,7 +49,7 @@ export function ContactSection() {
           <div>
             <div className="w-full h-full min-h-[400px] rounded-lg overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18815.80229599178!2d80.99207135937336!3d26.856445892252786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399be32c8953726b%3A0x964537d9419ffe65!2sMG%20Solar%20Panel%20Installation%20Services%20(A%20Unit%20of%20MG%20Enterprise&#39;s)%20Lucknow!5e0!3m2!1sen!2sin!4v1775658954780!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.719896524899!2d80.8222995!3d26.880638999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39995580305d93a5%3A0xf2a74164ad57aad0!2sGARGEE%20SOLAR%20COMPANY!5e0!3m2!1sen!2sin!4v1779877796406!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0, minHeight: '400px' }}
@@ -119,7 +119,7 @@ export function ContactSection() {
             <div className="bg-white/10 rounded-lg p-4 text-sm border border-white/20">
               <div className="font-semibold mb-2 text-secondary">Contact Information</div>
               <div className="space-y-1 text-white/90">
-                <div><strong>Address:</strong> Lucknow, Uttar Pradesh</div>
+                <div><strong>Address:</strong> Near Sikrori, Baj Nager, Sikrauri, Amethiasalempur, Uttar Pradesh 226101</div>
                 <div><strong>Email:</strong> <a href="mailto:gargeeenterprisesmld@gmail.com" className="underline hover:text-secondary">gargeeenterprisesmld@gmail.com</a></div>
                 <div><strong>Phone:</strong> <a href="tel:9695902026" className="underline hover:text-secondary">9695902026</a> / <a href="tel:9935857010" className="underline hover:text-secondary">9935857010</a></div>
               </div>

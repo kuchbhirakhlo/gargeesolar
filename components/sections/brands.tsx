@@ -13,6 +13,7 @@ const brands = [
   { name: 'Vikram', image: '/brandlogo/brand-vikram.png' },
   { name: 'Waree', image: '/brandlogo/brand-waree.png' },
   { name: 'Loom', image: '/brandlogo/brand-loom.png' },
+  { name: 'Oswal', image: '/brandlogo/oswal-logo.png' },
 ];
 
 export function BrandsSection() {
@@ -32,7 +33,7 @@ export function BrandsSection() {
                     src={brand.image}
                     alt={brand.name}
                     fill
-                    className="object-contain"
+                    className="object-contain rounded-full"
                     unoptimized
                     suppressHydrationWarning
                   />

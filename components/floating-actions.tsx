@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { Facebook, Instagram, MessageCircle, ArrowRight } from 'lucide-react';
+import { Facebook, Instagram, MessageCircle, ArrowRight, Youtube } from 'lucide-react';
 
 export function FloatingActions() {
   const pathname = usePathname();
@@ -37,7 +37,7 @@ export function FloatingActions() {
 
       {/* Social Media Icons */}
       <a
-        href="https://www.facebook.com/mgsolarcompany/"
+        href="https://www.facebook.com/people/Gargee-Solar/100044281187624/"
         target="_blank"
         rel="noopener noreferrer"
         className="w-14 h-12 flex items-center justify-center text-[#1877f2] hover:bg-blue-50 transition"
@@ -57,13 +57,22 @@ export function FloatingActions() {
       </a>
 
       <a
-        href="https://www.instagram.com/" 
+        href="https://www.facebook.com/people/Gargee-Solar/100044281187624/" 
         target="_blank"
         rel="noopener noreferrer"
         className="w-14 h-12 flex items-center justify-center text-[#E4405F] hover:bg-pink-50 transition"
         title="Instagram"
       >
         <Instagram className="w-5 h-5" />
+      </a>
+      <a 
+        href="https://www.youtube.com/@gargeesolar"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-14 h-12 flex items-center justify-center text-[#FF0000] hover:bg-red-50 transition"
+        title="YouTube"
+      >
+        <Youtube className="w-5 h-5" />
       </a>
     </div>
   );

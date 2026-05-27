@@ -6,7 +6,7 @@ service firebase.storage {
       allow read: if true; // Public read for website display
       allow write: if true; // Temporarily allow all writes for testing
       allow delete: if request.auth != null && request.auth.token.email in [
-        'admin@mgsolar.com' // Replace with actual admin emails
+        'admin@gargeesolar.in' // Replace with actual admin emails
       ];
     }
 
@@ -14,17 +14,17 @@ service firebase.storage {
     match /brands/{allPaths=**} {
       allow read: if true; // Public read for website display
       allow write: if request.auth != null && request.auth.token.email in [
-        'admin@mgsolar.com' // Replace with actual admin emails
+        'admin@gargeesolar.in' // Replace with actual admin emails
       ];
       allow delete: if request.auth != null && request.auth.token.email in [
-        'admin@mgsolar.com' // Replace with actual admin emails
+        'admin@gargeesolar.in' // Replace with actual admin emails
       ];
     }
 
     // Employee documents - Admin and Employee access
     match /employees/{allPaths=**} {
       allow read, write, delete: if request.auth != null && (
-        request.auth.token.email in ['admin@mgsolar.com'] ||
+        request.auth.token.email in ['admin@gargeesolar.in'] ||
         exists(/databases/$(database)/documents/employees/$(request.auth.uid))
       );
     }
