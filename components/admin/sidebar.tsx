@@ -7,27 +7,27 @@ import { signOut } from 'firebase/auth';
 import { getAuth } from '@/lib/firebase';
 
 const adminNavItems = [
-  { href: '/mgadmin', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/mgadmin/customers', label: 'Customers', icon: UserPlus },
-  { href: '/mgadmin/quotations', label: 'Quotations', icon: FileText },
-  { href: '/mgadmin/installations', label: 'Installations', icon: Wrench },
-  { href: '/mgadmin/projects', label: 'Projects', icon: FolderOpen },
-  { href: '/mgadmin/payments', label: 'Payments', icon: CreditCard },
-  { href: '/mgadmin/material-dispatch', label: 'Material Dispatch', icon: Truck },
-  { href: '/mgadmin/careers', label: 'Careers', icon: Briefcase },
-  { href: '/mgadmin/material-bill', label: 'Material Bills', icon: Receipt },
-  { href: '/mgadmin/messages', label: 'Messages', icon: MessageSquare },
-  { href: '/mgadmin/employees', label: 'Employees', icon: Users },
+  { href: '/gsadmin', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/gsadmin/customers', label: 'Customers', icon: UserPlus },
+  { href: '/gsadmin/quotations', label: 'Quotations', icon: FileText },
+  { href: '/gsadmin/installations', label: 'Installations', icon: Wrench },
+  { href: '/gsadmin/projects', label: 'Projects', icon: FolderOpen },
+  { href: '/gsadmin/payments', label: 'Payments', icon: CreditCard },
+  { href: '/gsadmin/material-dispatch', label: 'Material Dispatch', icon: Truck },
+  { href: '/gsadmin/careers', label: 'Careers', icon: Briefcase },
+  { href: '/gsadmin/material-bill', label: 'Material Bills', icon: Receipt },
+  { href: '/gsadmin/messages', label: 'Messages', icon: MessageSquare },
+  { href: '/gsadmin/employees', label: 'Employees', icon: Users },
 ];
 
 const employeeNavItems = [
-  { href: '/mgadmin/customers', label: 'Customers', icon: UserPlus },
-  { href: '/mgadmin/quotations', label: 'Quotations', icon: FileText },
-  { href: '/mgadmin/payments', label: 'Payments', icon: CreditCard },
+  { href: '/gsadmin/customers', label: 'Customers', icon: UserPlus },
+  { href: '/gsadmin/quotations', label: 'Quotations', icon: FileText },
+  { href: '/gsadmin/payments', label: 'Payments', icon: CreditCard },
 ];
 
 const installerNavItems = [
-  { href: '/mgadmin/installations', label: 'Engineers', icon: Wrench },
+  { href: '/gsadmin/installations', label: 'Engineers', icon: Wrench },
 ];
 
 interface AdminSidebarProps {

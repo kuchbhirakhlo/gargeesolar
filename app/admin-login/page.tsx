@@ -92,7 +92,7 @@ export default function AdminLogin() {
       sessionStorage.setItem('adminData', JSON.stringify(sessionData));
 
       // Navigate to admin dashboard
-      router.push('/mgadmin');
+      router.push('/gsadmin');
     } catch (err: any) {
       console.error('Login error:', err);
 

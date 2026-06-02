@@ -62,7 +62,7 @@ export default function EmployeeLogin() {
       sessionStorage.setItem('employeeData', JSON.stringify(sessionData));
 
       // Navigate to employee dashboard
-      router.push('/mgadmin/customers');
+      router.push('/gsadmin/customers');
     } catch (err: any) {
       console.error('Login error:', err);
       if (err.name !== 'AbortError') {

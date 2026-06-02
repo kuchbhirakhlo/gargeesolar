@@ -71,7 +71,7 @@ export default function InstallerLogin() {
       sessionStorage.setItem('employeeData', JSON.stringify(sessionData));
 
       // Navigate to installations page
-      router.push('/mgadmin/installations');
+      router.push('/gsadmin/installations');
     } catch (err: any) {
       console.error('Login error:', err);
       setError('Login failed. Please try again.');

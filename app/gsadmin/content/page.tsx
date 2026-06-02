@@ -30,7 +30,7 @@ export default function AdminContentPage() {
   useEffect(() => {
     const employeeData = sessionStorage.getItem('employeeData');
     if (employeeData) {
-      router.push('/mgadmin');
+      router.push('/gsadmin');
     }
   }, [router]);
 

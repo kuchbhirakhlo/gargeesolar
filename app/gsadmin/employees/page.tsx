@@ -39,7 +39,7 @@ export default function EmployeesPage() {
   useEffect(() => {
     const employeeData = sessionStorage.getItem('employeeData');
     if (employeeData) {
-      router.push('/mgadmin');
+      router.push('/gsadmin');
       return;
     }
     loadEmployees();

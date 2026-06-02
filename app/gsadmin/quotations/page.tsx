@@ -114,7 +114,7 @@ const QuotationPDF = ({ form }: { form: any }) => (
   <Document>
     {/* Page 1 */}
     <Page size="A4" style={styles.page}>
-      <PDFImage src="/mgsolarheader.png" style={styles.headerImage} />
+      <PDFImage src="/gargeeheader.png" style={styles.headerImage} />
       <Text style={styles.quotationNo}>Quotation No: {form.quotationNo}</Text>
       <View style={{ marginTop: 40 }}>
         <Text style={styles.text}>To,</Text>
@@ -191,12 +191,12 @@ const QuotationPDF = ({ form }: { form: any }) => (
         </View>
       </View>
       <View style={styles.footer}>
-        <PDFImage src="/mgsolarfooter.png" style={styles.footerImage} />
+        <PDFImage src="/gargeefooter.png" style={styles.footerImage} />
       </View>
     </Page>
     {/* Page 2 */}
     <Page size="A4" style={styles.page}>
-      <PDFImage src="/mgsolarheader.png" style={styles.headerImage} />
+      <PDFImage src="/gargeeheader.png" style={styles.headerImage} />
       <View style={{ marginTop: 40 }}>
         <Text style={styles.header}>PRICE BREAKUP</Text>
         <View style={styles.table}>
@@ -249,7 +249,7 @@ const QuotationPDF = ({ form }: { form: any }) => (
         <Text style={styles.text}>Authorized Signatory M.G. ENTERPRISES</Text>
        </View>
        <View style={styles.footer}>
-         <PDFImage src="/mgsolarfooter.png" style={styles.footerImage} />
+         <PDFImage src="/gargeefooter.png" style={styles.footerImage} />
        </View>
      </Page>
   </Document>
@@ -662,7 +662,7 @@ export default function QuotationPage() {
 
             {/* Header Image */}
             <div className="relative z-10">
-              <img src="/mgsolarheader.png" alt="header" width={754} height={50} className="w-full"/>
+              <img src="/gargeeheader.png" alt="header" width={754} height={50} className="w-full"/>
             </div>
 
             {/* Quotation Number */}
@@ -721,7 +721,7 @@ export default function QuotationPage() {
 
             {/* FOOTER PAGE 1 */}
             <div className="absolute bottom-6 left-10 right-10">
-              <img src="/mgsolarfooter.png" alt="footer" width={754} height={20} className="w-full"/>
+              <img src="/gargeefooter.png" alt="footer" width={754} height={20} className="w-full"/>
             </div>
           </div>
 
@@ -735,7 +735,7 @@ export default function QuotationPage() {
 
              {/* Header Image */}
              <div className="relative z-10 mb-6">
-               <img src="/mgsolarheader.png" alt="header" width={754} height={50} className="w-full"/>
+               <img src="/gargeeheader.png" alt="header" width={754} height={50} className="w-full"/>
              </div>
 
             {/* PRICE BREAKUP */}
@@ -805,7 +805,7 @@ export default function QuotationPage() {
 
             {/* FOOTER PAGE 2 */}
             <div className="absolute bottom-6 left-10 right-10">
-              <img src="/mgsolarfooter.png" alt="footer" width={754} height={20} className="w-full"/>
+              <img src="/gargeefooter.png" alt="footer" width={754} height={20} className="w-full"/>
             </div>
           </div>
 
@@ -821,7 +821,7 @@ export default function QuotationPage() {
 
             {/* Header Image */}
             <div className="relative z-10 mb-6">
-              <img src="/mgsolarheader.png" alt="header" width={754} height={50} className="w-full"/>
+              <img src="/gargeeheader.png" alt="header" width={754} height={50} className="w-full"/>
             </div>
 
             {/* ANNEXURE 2 TITLE */}
@@ -863,7 +863,7 @@ export default function QuotationPage() {
 
             {/* FOOTER PAGE 3 */}
             <div className="absolute bottom-6 left-10 right-10">
-              <img src="/mgsolarfooter.png" alt="footer" width={754} height={20} className="w-full"/>
+              <img src="/gargeefooter.png" alt="footer" width={754} height={20} className="w-full"/>
             </div>
           </div>
 
@@ -877,7 +877,7 @@ export default function QuotationPage() {
 
             {/* Header Image */}
             <div className="relative z-10 mb-6">
-              <img src="/mgsolarheader.png" alt="header" width={754} height={50} className="w-full"/>
+              <img src="/gargeeheader.png" alt="header" width={754} height={50} className="w-full"/>
             </div>
 
             {/* AGREEMENT CONTENT CONTINUATION */}
@@ -899,7 +899,7 @@ export default function QuotationPage() {
 
             {/* FOOTER PAGE 4 */}
             <div className="absolute bottom-6 left-10 right-10">
-              <img src="/mgsolarfooter.png" alt="footer" width={754} height={20} className="w-full"/>
+              <img src="/gargeefooter.png" alt="footer" width={754} height={20} className="w-full"/>
             </div>
           </div>
 
@@ -913,7 +913,7 @@ export default function QuotationPage() {
 
             {/* Header Image */}
             <div className="relative z-10 mb-6">
-              <img src="/mgsolarheader.png" alt="header" width={754} height={50} className="w-full"/>
+              <img src="/gargeeheader.png" alt="header" width={754} height={50} className="w-full"/>
             </div>
 
             {/* AGREEMENT CONTENT CONTINUATION */}
@@ -934,7 +934,7 @@ export default function QuotationPage() {
 
             {/* FOOTER PAGE 5 */}
             <div className="absolute bottom-6 left-10 right-10">
-              <img src="/mgsolarfooter.png" alt="footer" width={754} height={20} className="w-full"/>
+              <img src="/gargeefooter.png" alt="footer" width={754} height={20} className="w-full"/>
             </div>
           </div>
 
@@ -948,7 +948,7 @@ export default function QuotationPage() {
 
             {/* Header Image */}
             <div className="relative z-10 mb-6">
-              <img src="/mgsolarheader.png" alt="header" width={754} height={50} className="w-full"/>
+              <img src="/gargeeheader.png" alt="header" width={754} height={50} className="w-full"/>
             </div>
 
             {/* AGREEMENT CONTENT CONTINUATION */}
@@ -981,7 +981,7 @@ export default function QuotationPage() {
 
             {/* FOOTER PAGE 6 */}
             <div className="absolute bottom-4 left-10 right-10">
-              <img src="/mgsolarfooter.png" alt="footer" width={754} height={20} className="w-full"/>
+              <img src="/gargeefooter.png" alt="footer" width={754} height={20} className="w-full"/>
             </div>
           </div>
           </>

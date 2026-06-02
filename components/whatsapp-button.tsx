@@ -6,7 +6,7 @@ export function WhatsAppButton() {
   const pathname = usePathname();
 
   // Hide on admin panel pages
-  if (pathname && pathname.startsWith('/mgadmin')) {
+  if (pathname && pathname.startsWith('/gsadmin')) {
     return null;
   }
 
