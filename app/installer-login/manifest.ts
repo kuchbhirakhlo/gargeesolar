@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'M.G. Enterprises Solar Engineer App',
+    name: 'Gargee Solar Solar Engineer App',
     short_name: 'Gargee Solar Engineer',
     description: 'Solar installation and management app for engineers',
     start_url: '/installer-login',

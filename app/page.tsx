@@ -38,9 +38,9 @@ export const metadata: Metadata = {
     'hybrid solar system dealer in Gonda',
     'solar battery replacement in Kushinagar'
   ],
-  authors: [{ name: 'M.G. Enterprises' }],
-  creator: 'M.G. Enterprises',
-  publisher: 'M.G. Enterprises',
+  authors: [{ name: 'Gargee Solar' }],
+  creator: 'Gargee Solar',
+  publisher: 'Gargee Solar',
   formatDetection: {
     email: false,
     address: false,
@@ -51,10 +51,10 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'M.G. Enterprises - Solar Panel Experts in Lucknow',
+    title: 'Gargee Solar - Solar Panel Experts in Lucknow',
     description: 'Professional solar panel installation and dealer services in Lucknow, Uttar Pradesh. Quality solar solutions for your home and business.',
     url: 'https://gargeesolar.in',
-    siteName: 'M.G. Enterprises',
+    siteName: 'Gargee Solar',
     locale: 'en_US',
     type: 'website',
     images: [
@@ -92,7 +92,7 @@ export default function Home() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "M.G. Enterprises",
+    "name": "Gargee Solar",
     "description": "Leading solar panel dealer and installer in Lucknow, Uttar Pradesh. Providing high-quality solar panels, installation services, and renewable energy solutions.",
     "url": "https://gargeesolar.in",
     "telephone": "+91-9695902026",
