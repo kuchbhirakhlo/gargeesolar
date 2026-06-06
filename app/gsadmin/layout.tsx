@@ -128,7 +128,7 @@ export default function AdminLayout({
               <Menu className="w-5 h-5" />
             </Button>
 
-            <h1 className="text-lg sm:text-xl font-bold truncate">MG Admin</h1>
+            <h1 className="text-lg sm:text-xl font-bold truncate">Gargee Solar Admin</h1>
           </div>
 
           {/* User Info / Actions */}
