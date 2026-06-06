@@ -69,7 +69,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Best Solar Panel Dealer & Installation Services in Lucknow | Gargee Solar Uttar Pradesh',
-    description: 'Looking for reliable solar panel installation in Lucknow, Gorakhpur, Ayodhya, Barabanki, Bahraich, Gonda & Kushinagar? Get affordable rooftop solar installation, maintenance, repair & after-sales services.',
+    description: 'Looking for reliable solar panel installation in Lucknow, Unnao & Hardoi, Uttar Pradesh Get affordable rooftop solar installation, maintenance, repair & after-sales services.',
     images: [{ url: '/homeheroimage.jpg', alt: 'Gargee Solar Panel Installation Services in Lucknow and Uttar Pradesh' }],
   },
   robots: {

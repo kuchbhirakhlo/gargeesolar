@@ -76,6 +76,27 @@ export function HeroSection() {
       {/* Content */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center justify-center">
+
+
+          {/* Video Section */}
+          <div className="flex-1 lg:flex-none lg:w-2/5 relative">
+            <div className="relative h-64 lg:h-80 xl:h-96 max-w-md mx-auto lg:mx-0">
+              <video
+                src="/herovideo.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-bottom object-cover rounded-2xl shadow-xl"
+                suppressHydrationWarning
+              />
+              {/* Video overlay gradient for better text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-2xl pointer-events-none"></div>
+              {/* Decorative elements */}
+              <div className="absolute -top-2 -right-2 w-16 h-16 bg-secondary/20 rounded-full blur-lg hidden lg:block pointer-events-none"></div>
+              <div className="absolute -bottom-3 -left-3 w-20 h-20 bg-primary/20 rounded-full blur-lg hidden lg:block pointer-events-none"></div>
+            </div>
+          </div>
           {/* Content Section */}
           <div className="flex-1 lg:flex-none lg:w-1/2 text-center lg:text-left space-y-6 lg:space-y-8">
             <div className="space-y-4">
@@ -121,25 +142,6 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Video Section */}
-          <div className="flex-1 lg:flex-none lg:w-2/5 relative">
-            <div className="relative h-64 lg:h-80 xl:h-96 max-w-md mx-auto lg:mx-0">
-              <video
-                src="/herovideo.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-full object-bottom object-cover rounded-2xl shadow-xl"
-                suppressHydrationWarning
-              />
-              {/* Video overlay gradient for better text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-2xl pointer-events-none"></div>
-              {/* Decorative elements */}
-              <div className="absolute -top-2 -right-2 w-16 h-16 bg-secondary/20 rounded-full blur-lg hidden lg:block pointer-events-none"></div>
-              <div className="absolute -bottom-3 -left-3 w-20 h-20 bg-primary/20 rounded-full blur-lg hidden lg:block pointer-events-none"></div>
-            </div>
-          </div>
         </div>
       </div>
 
