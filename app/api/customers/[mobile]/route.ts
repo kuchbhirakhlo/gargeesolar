@@ -15,6 +15,34 @@ export async function GET(request: Request, { params }: { params: Promise<{ mobi
     const snapshot = await getDocs(q);
 
     if (snapshot.empty) {
+      // Customer not found in customers collection, try fetching from leads collection
+      const leadsRef = collection(db, 'leads');
+      const leadsQuery = query(leadsRef, where('phone', '==', normalizedMobile));
+      const leadsSnapshot = await getDocs(leadsQuery);
+      
+      if (!leadsSnapshot.empty) {
+        // Found lead from messages page - use name, kw, and city
+        const lead = leadsSnapshot.docs[0].data();
+        const kilowattValue = lead.kw ? lead.kw.toString().replace(/[^\d.]/g, '') : "";
+        
+        return NextResponse.json({
+          success: true,
+          customer: {
+            id: leadsSnapshot.docs[0].id,
+            customerName: lead.name || "",
+            address: lead.city || "", // Use City as Address
+            kilowatt: kilowattValue,
+            batteryCompanyName: "",
+            systemType: "",
+            panelCompanyName: "",
+            inverterCompanyName: "",
+            referredBy: "",
+            quotationPrice: "",
+            mobileNumber: normalizedMobile,
+          }
+        });
+      }
+      
       return NextResponse.json({
         success: false,
         error: 'Customer not found'

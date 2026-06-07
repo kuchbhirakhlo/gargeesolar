@@ -527,6 +527,7 @@ export default function AdminCustomersPage() {
                           <SelectItem value="Vikram Solar">Vikram Solar</SelectItem>
                           <SelectItem value="Waaree">Waaree</SelectItem>
                           <SelectItem value="Tata">Tata</SelectItem>
+                          <SelectItem value="Oswal Solar">Oswal Solar</SelectItem>
                         </SelectContent>
                       </Select>
                       {errors.panelCompanyName && <p className="text-red-500 text-sm">{errors.panelCompanyName}</p>}

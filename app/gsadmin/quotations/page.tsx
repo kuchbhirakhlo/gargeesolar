@@ -245,7 +245,7 @@ const QuotationPDF = ({ form }: { form: any }) => (
         <Text style={styles.text}>Warranties shall be as per manufacturer terms.</Text>
         <Text style={styles.text}>Prices and approvals are subject to applicable rules and regulations.</Text>
         <Text style={styles.text}>Consumer Name: {form.customerName}</Text>
-        <PDFImage src="/mohar.png" style={{ width: 55, height: 28, marginTop: 10, alignSelf: 'flex-end' }} />
+        <PDFImage src="/mohar.jpeg" style={{ width: 55, height: 28, marginTop: 10, alignSelf: 'flex-end' }} />
         <Text style={styles.text}>Authorized Signatory Gargee Solar</Text>
        </View>
        <View style={styles.footer}>
