@@ -797,7 +797,7 @@ export default function QuotationPage() {
               </div>
 
               <div className=" text-right">
-                <img src="/mohar.png" alt="signature" width={100} height={50} className="mb-2" />
+                <img src="/mohar.jpeg" alt="signature" width={100} height={50} className="mb-2" />
                 <p>Authorized Signatory</p>
                 <p className="font-semibold">Gargee Solar</p>
               </div>

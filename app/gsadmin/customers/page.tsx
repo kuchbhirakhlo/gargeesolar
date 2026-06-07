@@ -40,28 +40,7 @@ interface Customer {
   createdBy?: string; // Employee ID who created this customer
 }
 
-const MIN_QUOTATION_PRICES: Record<string, Record<string, number>> = {
-  'on grid': {
-    '3kw': 175000,
-    '4kw': 225000,
-    '5kw': 270000,
-    '6kw': 335000,
-    '7kw': 360000,
-    '8kw': 430000,
-    '9kw': 470000,
-    '10kw': 520000,
-  },
-  'hybrid': {
-    '3kw': 245000,
-    '4kw': 350000,
-    '5kw': 375000,
-    '6kw': 450000,
-    '7kw': 525000,
-    '8kw': 600000,
-    '9kw': 675000,
-    '10kw': 750000,
-  },
-};
+
 
 export default function AdminCustomersPage() {
   const router = useRouter();
@@ -200,14 +179,6 @@ export default function AdminCustomersPage() {
     // Special validation for mobile number
     if (formData.mobileNumber && formData.mobileNumber.length !== 10) {
       newErrors.mobileNumber = 'Mobile number must be exactly 10 digits';
-    }
-
-    // Check minimum quotation price if system type and KW are selected
-    if (formData.systemType && formData.kilowatt && formData.quotationPrice) {
-      const minPrice = MIN_QUOTATION_PRICES[formData.systemType]?.[formData.kilowatt];
-      if (minPrice && parseFloat(formData.quotationPrice) < minPrice) {
-        newErrors.quotationPrice = `Quotation price must be at least ₹${minPrice.toLocaleString()}`;
-      }
     }
 
     setErrors(newErrors);
