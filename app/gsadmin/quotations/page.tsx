@@ -245,7 +245,7 @@ const QuotationPDF = ({ form }: { form: any }) => (
         <Text style={styles.text}>Warranties shall be as per manufacturer terms.</Text>
         <Text style={styles.text}>Prices and approvals are subject to applicable rules and regulations.</Text>
         <Text style={styles.text}>Consumer Name: {form.customerName}</Text>
-        <PDFImage src="/mohar.jpeg" style={{ width: 55, height: 28, marginTop: 10, alignSelf: 'flex-end' }} />
+        <PDFImage src="/mohar.png" style={{ width: 55, height: 28, marginTop: 10, alignSelf: 'flex-end' }} />
         <Text style={styles.text}>Authorized Signatory Gargee Solar</Text>
        </View>
        <View style={styles.footer}>
@@ -797,7 +797,7 @@ export default function QuotationPage() {
               </div>
 
               <div className=" text-right">
-                <img src="/mohar.jpeg" alt="signature" width={100} height={50} className="mb-2" />
+                <img src="/mohar.png" alt="signature" width={100} height={50} className="mb-2" />
                 <p>Authorized Signatory</p>
                 <p className="font-semibold">Gargee Solar</p>
               </div>
@@ -972,7 +972,7 @@ export default function QuotationPage() {
                 <div className="text-center">
                   <p><strong>Second Party</strong></p>
                   <p>Gargee Solar Lucknow</p>
-                  <img src="/mohar.png" alt="Authorised Signatory Gargee Solar Lucknow" width={100} height={50} className="mt-2" />
+                  <img src="/mohar.png" alt="Authorised Signatory Gargee Solar Lucknow" width={100} height={50} className="  mt-2" />
                   <p className="mt-4">Sign:</p>
                   <p>___________________________</p>
                 </div>
