@@ -25,7 +25,7 @@ export async function GET() {
     // Fetch recent activities
     const recentMessagesQuery = query(
       collection(db, 'contact_messages'),
-      orderBy('createdAt', 'desc'),
+      orderBy('timestamp', 'desc'),
       limit(5)
     );
     const recentMessagesSnapshot = await getDocs(recentMessagesQuery);

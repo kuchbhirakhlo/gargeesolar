@@ -355,6 +355,24 @@ service cloud.firestore {
     }
 
     // ===========================================
+    // LEADS - Quick Lead Popup (Public Write, Admin Read)
+    // ===========================================
+    match /leads/{leadId} {
+      allow create: if request.resource.data.keys().hasAny(['name', 'phone']) &&
+        request.resource.data.name is string;
+      allow read, update, delete: if true;
+    }
+
+    // ===========================================
+    // CONTACT MESSAGES - Contact Form (Public Write, Admin Read)
+    // ===========================================
+    match /contact_messages/{messageId} {
+      allow create: if request.resource.data.keys().hasAny(['name', 'message']) &&
+        request.resource.data.name is string;
+      allow read, update, delete: if true;
+    }
+
+    // ===========================================
     // DEVELOPMENT RULES (Currently Active) - Allow all operations
     // ===========================================
     match /{document=**} {

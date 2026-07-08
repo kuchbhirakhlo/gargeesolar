@@ -6,10 +6,16 @@ export async function GET() {
   try {
     const q = query(collection(db, 'contact_messages'), orderBy('timestamp', 'desc'));
     const querySnapshot = await getDocs(q);
-    const messages = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+      const messages = querySnapshot.docs.map((doc) => {
+        const data = doc.data();
+        // Convert Firestore Timestamp to ISO string for serialization
+        const timestamp = data.timestamp?.toDate?.()?.toISOString() || null;
+        return {
+          id: doc.id,
+          ...data,
+          timestamp,
+        };
+      });
     return NextResponse.json(messages);
   } catch (error) {
     console.error('Error fetching contact messages:', error);

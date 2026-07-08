@@ -68,7 +68,7 @@ export default function AdminMessagesPage() {
       if (contactResponse.ok) {
         const contacts = await contactResponse.json();
         if (contacts.length > 0) {
-          contactMessages = contacts.map((contact: Record<string, string>) => ({
+          contactMessages = contacts.map((contact: any) => ({
             id: contact.id,
             name: contact.lastName ? `${contact.name} ${contact.lastName}` : contact.name,
             phone: contact.phone || '',

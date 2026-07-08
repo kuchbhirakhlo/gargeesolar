@@ -13,12 +13,26 @@ service cloud.firestore {
       ];
     }
 
-    function isEmployee() {
-      return isAuthenticated() && exists(/databases/$(database)/documents/employees/$(request.auth.uid));
+    // ===========================================
+    // LEADS - Quick Lead Popup (Public Write, Admin Read)
+    // ===========================================
+    match /leads/{leadId} {
+      // Allow anyone to submit quick lead forms
+      allow create: if request.resource.data.keys().hasAny(['name', 'phone']) &&
+        request.resource.data.name is string;
+      // Allow read for development
+      allow read, update, delete: if true;
     }
 
-    function getUserRole() {
-      return get(/databases/$(database)/documents/employees/$(request.auth.uid)).data.role;
+    // ===========================================
+    // CONTACT MESSAGES - Contact Form (Public Write, Admin Read)
+    // ===========================================
+    match /contact_messages/{messageId} {
+      // Allow anyone to submit contact forms
+      allow create: if request.resource.data.keys().hasAny(['name', 'message']) &&
+        request.resource.data.name is string;
+      // Allow read for development
+      allow read, update, delete: if true;
     }
 
     // Projects collection - Public read, Admin write
@@ -37,7 +51,7 @@ service cloud.firestore {
       allow delete: if true; // Temporarily allow delete for development
     }
 
-    // Contact Messages collection - Admin only
+    // Contact Messages (legacy camelCase name) - Keep for backward compatibility
     match /contactMessages/{messageId} {
       allow read: if true; // Temporarily allow read for development
       allow write: if true; // Allow anyone to submit contact forms
