@@ -3,6 +3,7 @@
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Card } from '@/components/ui/card';
+import { convertGoogleDriveUrl } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { db } from '@/lib/firebase';
 import { collection, onSnapshot, QuerySnapshot, DocumentData } from 'firebase/firestore';
@@ -59,7 +60,7 @@ export default function ProjectsPage() {
                 >
                    <div className="h-48 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center group-hover:from-primary/30 group-hover:to-secondary/30 transition-all overflow-hidden">
                      {project.image.startsWith('http') ? (
-                       <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                       <img src={convertGoogleDriveUrl(project.image)} alt={project.title} className="w-full h-full object-cover" />
                      ) : (
                        <span className="text-6xl">{project.image}</span>
                      )}

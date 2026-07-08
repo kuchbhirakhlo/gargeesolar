@@ -45,6 +45,9 @@ interface Quotation {
   panelCompanyName: string;
   inverterCompanyName: string;
   referredBy: string;
+  acWire: string;
+  dcWire: string;
+  structure: string;
   createdAt: string;
 }
 
@@ -151,7 +154,7 @@ const QuotationPDF = ({ form }: { form: any }) => (
           <View style={styles.tableRow}>
             <Text style={styles.tableCell}>4</Text>
             <Text style={styles.tableCell}>Structure</Text>
-            <Text style={styles.tableCell}>GI / Aluminium Rooftop</Text>
+            <Text style={styles.tableCell}>{form.structure || "GI / Aluminium Rooftop"}</Text>
           </View>
           <View style={styles.tableRow}>
             <Text style={styles.tableCell}>5</Text>
@@ -170,21 +173,26 @@ const QuotationPDF = ({ form }: { form: any }) => (
           </View>
           <View style={styles.tableRow}>
             <Text style={styles.tableCell}>7</Text>
-            <Text style={styles.tableCell}>Wire</Text>
-            <Text style={styles.tableCell}>Polycab (4 sq mm)</Text>
+            <Text style={styles.tableCell}>AC Wire</Text>
+            <Text style={styles.tableCell}>{form.acWire || "Polycab (4 sq mm)"}</Text>
           </View>
           <View style={styles.tableRow}>
             <Text style={styles.tableCell}>8</Text>
+            <Text style={styles.tableCell}>DC Wire</Text>
+            <Text style={styles.tableCell}>{form.dcWire || "Polycab (4 sq mm)"}</Text>
+          </View>
+          <View style={styles.tableRow}>
+            <Text style={styles.tableCell}>9</Text>
             <Text style={styles.tableCell}>Earthing</Text>
             <Text style={styles.tableCell}>Green (4 sq mm)</Text>
           </View>
           <View style={styles.tableRow}>
-            <Text style={styles.tableCell}>9</Text>
+            <Text style={styles.tableCell}>10</Text>
             <Text style={styles.tableCell}>Warranty</Text>
             <Text style={styles.tableCell}>Panel: 25+ Years, Inverter: 5–10 Years</Text>
           </View>
           <View style={styles.tableRow}>
-            <Text style={styles.tableCell}>10</Text>
+            <Text style={styles.tableCell}>11</Text>
             <Text style={styles.tableCell}>Battery</Text>
             <Text style={styles.tableCell}>{form.batteryCompanyName}</Text>
           </View>
@@ -235,9 +243,9 @@ const QuotationPDF = ({ form }: { form: any }) => (
         <Text style={styles.text}>Operation & maintenance charges are not included in this price.</Text>
         <Text style={styles.header}>Company Bank Details</Text>
         <Text style={styles.text}>Bank Name: Punjab National Bank</Text>
-        <Text style={styles.text}>Account No.: 6193002100003379</Text>
-        <Text style={styles.text}>IFSC: PUNB0619300</Text>
-        <Text style={styles.text}>Branch: Vibhuti Khand, Gomti Nagar, Lucknow</Text>
+        <Text style={styles.text}>Account No.: 0347102100000239</Text>
+        <Text style={styles.text}>IFSC: PUNB0034710</Text>
+        <Text style={styles.text}>Branch: Punjab National Bank,Mehmood Nagar</Text>
         <Text style={styles.header}>DECLARATION</Text>
         <Text style={styles.text}>We hereby declare that the above quotation is true and correct.</Text>
         <Text style={styles.text}>All materials supplied will be new and of standard quality.</Text>
@@ -280,6 +288,9 @@ export default function QuotationPage() {
     panelCompanyName: "",
     inverterCompanyName: "",
     referredBy: "",
+    acWire: "",
+    dcWire: "",
+    structure: "",
   });
 
 
@@ -393,6 +404,9 @@ export default function QuotationPage() {
               inverterCompanyName: customer.inverterCompanyName || "",
               referredBy: customer.referredBy || "",
               price: customer.quotationPrice || "",
+              acWire: customer.acWire || "",
+              dcWire: customer.dcWire || "",
+              structure: customer.structure || "",
             }));
           }
         } else {
@@ -411,6 +425,9 @@ export default function QuotationPage() {
               inverterCompanyName: "",
               referredBy: "",
               price: "",
+              acWire: "",
+              dcWire: "",
+              structure: "",
             }));
           }
         }
@@ -443,6 +460,9 @@ export default function QuotationPage() {
       panelCompanyName: quotation.panelCompanyName,
       inverterCompanyName: quotation.inverterCompanyName,
       referredBy: quotation.referredBy,
+      acWire: quotation.acWire || "",
+      dcWire: quotation.dcWire || "",
+      structure: quotation.structure || "",
     });
     setIsEditing(true);
     setTimeout(() => {
@@ -497,7 +517,7 @@ export default function QuotationPage() {
         setIsEditing(false);
         setSelectedQuotation(null);
         // Reset form for new quotation (quotationNo and date will be updated by useEffect)
-        setForm(prev => ({ ...prev, customerId: "", customerName: "", address: "", batteryCompanyName: "", systemType: "", kilowatt: "", panelCompanyName: "", inverterCompanyName: "", referredBy: "", price: "" }));
+        setForm(prev => ({ ...prev, customerId: "", customerName: "", address: "", batteryCompanyName: "", systemType: "", kilowatt: "", panelCompanyName: "", inverterCompanyName: "", referredBy: "", price: "", acWire: "", dcWire: "", structure: "" }));
       });
     }
   };
@@ -635,6 +655,9 @@ export default function QuotationPage() {
           <input name="inverterCompanyName" value={form.inverterCompanyName} onChange={handleChange} placeholder="Inverter Company" className="border p-2"/>
           <input name="referredBy" value={form.referredBy} onChange={handleChange} placeholder="Referred By" className="border p-2"/>
           <input name="price" value={form.price} onChange={handleChange} placeholder="Price" className="border p-2"/>
+          <input name="acWire" value={form.acWire} onChange={handleChange} placeholder="AC Wire" className="border p-2"/>
+          <input name="dcWire" value={form.dcWire} onChange={handleChange} placeholder="DC Wire" className="border p-2"/>
+          <input name="structure" value={form.structure} onChange={handleChange} placeholder="Structure" className="border p-2"/>
         </div>
 
         <div className="flex gap-4 mt-3">
@@ -703,7 +726,7 @@ export default function QuotationPage() {
                   <tr><td className="border p-2">1</td><td className="border p-2">System Capacity</td><td className="border p-2">{form.kilowatt} KW ({form.systemType})</td></tr>
                   <tr><td className="border p-2">2</td><td className="border p-2">Solar Panels</td><td className="border p-2">{form.panelCompanyName} </td></tr>
                   <tr><td className="border p-2">3</td><td className="border p-2">Inverter</td><td className="border p-2">{form.inverterCompanyName}</td></tr>
-                  <tr><td className="border p-2">4</td><td className="border p-2">Structure</td><td className="border p-2">GI / Aluminium Rooftop</td></tr>
+                  <tr><td className="border p-2">4</td><td className="border p-2">Structure</td><td className="border p-2">{form.structure || "GI / Aluminium Rooftop"}</td></tr>
                   <tr><td className="border p-2">5</td><td className="border p-2">Generation</td><td className="border p-2">{form.kilowatt ? (() => {
                     const kw = parseFloat(form.kilowatt.replace(/[^\d.]/g, '')) || 0;
                     const min = kw * 4;
@@ -711,10 +734,11 @@ export default function QuotationPage() {
                     return `${min}–${max} Units per Day`;
                   })() : "Units per Day"}</td></tr>
                   <tr><td className="border p-2">6</td><td className="border p-2">ACDB & DCDB</td><td className="border p-2">Polycab / Havells</td></tr>
-                  <tr><td className="border p-2">7</td><td className="border p-2">Wire</td><td className="border p-2">Polycab (4 sq mm)</td></tr>
-                  <tr><td className="border p-2">8</td><td className="border p-2">Earthing</td><td className="border p-2">Green (4 sq mm)</td></tr>
-                  <tr><td className="border p-2">9</td><td className="border p-2">Warranty</td><td className="border p-2">Panel: 25+ Years, Inverter: 5–10 Years</td></tr>
-                  <tr><td className="border p-2">10</td><td className="border p-2">Battery</td><td className="border p-2">{form.batteryCompanyName}</td></tr>
+                  <tr><td className="border p-2">7</td><td className="border p-2">AC Wire</td><td className="border p-2">{form.acWire || "Polycab (4 sq mm)"}</td></tr>
+                  <tr><td className="border p-2">8</td><td className="border p-2">DC Wire</td><td className="border p-2">{form.dcWire || "Polycab (4 sq mm)"}</td></tr>
+                  <tr><td className="border p-2">9</td><td className="border p-2">Earthing</td><td className="border p-2">Green (4 sq mm)</td></tr>
+                  <tr><td className="border p-2">10</td><td className="border p-2">Warranty</td><td className="border p-2">Panel: 25+ Years, Inverter: 5–10 Years</td></tr>
+                  <tr><td className="border p-2">11</td><td className="border p-2">Battery</td><td className="border p-2">{form.batteryCompanyName}</td></tr>
                 </tbody>
               </table>
             </div>

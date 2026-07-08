@@ -18,7 +18,7 @@ export function Footer() {
             <p className="text-white/80 text-sm">
               <strong>Address:</strong> Near Sikrori, Baj Nager, Sikrauri, Amethiasalempur, Uttar Pradesh 226101<br />
               <strong>Email:</strong> gargeeenterprisesmld@gmail.com<br />
-              <strong>Phone:</strong> 9695902026 / 9935857010
+              <strong>Phone:</strong> 9695902026
             </p>
           </div>
           <div>

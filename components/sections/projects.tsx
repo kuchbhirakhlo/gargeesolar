@@ -2,6 +2,7 @@
 
 import { useLanguage } from '@/lib/language-context';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { convertGoogleDriveUrl } from '@/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
@@ -157,7 +158,7 @@ export function ProjectsSection() {
               <div className="h-40 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-primary/30 group-hover:to-secondary/30 transition-all overflow-hidden">
                 {project.image && project.image.startsWith('http') ? (
                   <Image
-                    src={project.image}
+                    src={convertGoogleDriveUrl(project.image)}
                     alt={project.title}
                     width={300}
                     height={160}

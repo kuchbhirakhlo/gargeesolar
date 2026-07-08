@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Edit2, Trash2, Plus, Upload, Loader2 } from 'lucide-react';
 import { useFormSubmit } from '@/hooks/use-form-submit';
+import { convertGoogleDriveUrl } from '@/lib/utils';
 import { db } from '@/lib/firebase';
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc, onSnapshot, QuerySnapshot, DocumentData } from 'firebase/firestore';
 
@@ -221,9 +222,15 @@ export default function AdminProjectsPage() {
               <input
                 type="url"
                 name="image"
-                placeholder="Image URL (optional)"
+                placeholder="Image URL (optional) - Google Drive links supported"
                 value={formData.image}
                 onChange={handleChange}
+                onBlur={(e) => {
+                  const converted = convertGoogleDriveUrl(e.target.value);
+                  if (converted !== e.target.value) {
+                    setFormData({ ...formData, image: converted });
+                  }
+                }}
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-accent"
               />
               <div className="space-y-2">
