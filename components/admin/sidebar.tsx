@@ -23,7 +23,10 @@ const adminNavItems = [
 const employeeNavItems = [
   { href: '/gsadmin/customers', label: 'Customers', icon: UserPlus },
   { href: '/gsadmin/quotations', label: 'Quotations', icon: FileText },
+  { href: '/gsadmin/projects', label: 'Projects', icon: FolderOpen },
   { href: '/gsadmin/payments', label: 'Payments', icon: CreditCard },
+  { href: '/gsadmin/careers', label: 'Careers', icon: Briefcase },
+  { href: '/gsadmin/messages', label: 'Messages', icon: MessageSquare },
 ];
 
 const installerNavItems = [

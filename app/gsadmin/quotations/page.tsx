@@ -48,6 +48,7 @@ interface Quotation {
   acWire: string;
   dcWire: string;
   structure: string;
+  electricityBillNo: string;
   createdAt: string;
 }
 
@@ -235,7 +236,7 @@ const QuotationPDF = ({ form }: { form: any }) => (
         </View>
         <Text style={styles.text}>(Amount in words: Rupees {numberToWords(parseInt(form.price || '0'))} Only)</Text>
         <Text style={styles.header}>TERMS & CONDITIONS</Text>
-        <Text style={styles.text}>Validity of quotation: 15 days</Text>
+        <Text style={styles.text}>Validity of quotation: 1 week</Text>
         <Text style={styles.text}>Installation Timeline: 15–25 Working Days</Text>
         <Text style={styles.text}>Net metering subject to DISCOM approval.</Text>
         <Text style={styles.text}>System generation depends on sunlight & site conditions.</Text>
@@ -291,6 +292,7 @@ export default function QuotationPage() {
     acWire: "",
     dcWire: "",
     structure: "",
+    electricityBillNo: "",
   });
 
 
@@ -407,6 +409,7 @@ export default function QuotationPage() {
               acWire: customer.acWire || "",
               dcWire: customer.dcWire || "",
               structure: customer.structure || "",
+              electricityBillNo: customer.electricityBillNo || "",
             }));
           }
         } else {
@@ -428,6 +431,7 @@ export default function QuotationPage() {
               acWire: "",
               dcWire: "",
               structure: "",
+              electricityBillNo: "",
             }));
           }
         }
@@ -463,6 +467,7 @@ export default function QuotationPage() {
       acWire: quotation.acWire || "",
       dcWire: quotation.dcWire || "",
       structure: quotation.structure || "",
+      electricityBillNo: quotation.electricityBillNo || "",
     });
     setIsEditing(true);
     setTimeout(() => {
@@ -517,7 +522,7 @@ export default function QuotationPage() {
         setIsEditing(false);
         setSelectedQuotation(null);
         // Reset form for new quotation (quotationNo and date will be updated by useEffect)
-        setForm(prev => ({ ...prev, customerId: "", customerName: "", address: "", batteryCompanyName: "", systemType: "", kilowatt: "", panelCompanyName: "", inverterCompanyName: "", referredBy: "", price: "", acWire: "", dcWire: "", structure: "" }));
+        setForm(prev => ({ ...prev, customerId: "", customerName: "", address: "", batteryCompanyName: "", systemType: "", kilowatt: "", panelCompanyName: "", inverterCompanyName: "", referredBy: "", price: "", acWire: "", dcWire: "", structure: "", electricityBillNo: "" }));
       });
     }
   };
@@ -657,6 +662,7 @@ export default function QuotationPage() {
           <input name="price" value={form.price} onChange={handleChange} placeholder="Price" className="border p-2"/>
           <input name="acWire" value={form.acWire} onChange={handleChange} placeholder="AC Wire" className="border p-2"/>
           <input name="dcWire" value={form.dcWire} onChange={handleChange} placeholder="DC Wire" className="border p-2"/>
+          <input name="electricityBillNo" value={form.electricityBillNo} onChange={handleChange} placeholder="Electricity Bill No" className="border p-2"/>
           <input name="structure" value={form.structure} onChange={handleChange} placeholder="Structure" className="border p-2"/>
         </div>
 
@@ -786,7 +792,7 @@ export default function QuotationPage() {
             <div className="flex gap-4">
               <div className="flex-1 text-sm">
                 <h2 className="font-semibold">TERMS & CONDITIONS</h2>
-                <p>Validity of quotation: 15 days</p>
+                <p>Validity of quotation: 1 week</p>
                 <p>Installation Timeline: 15–25 Working Days</p>
                 <p>Net metering subject to DISCOM approval.</p>
                 <p>System generation depends on sunlight & site conditions.</p>
@@ -796,10 +802,10 @@ export default function QuotationPage() {
 
               <div className="flex-1 text-sm border border-gray-300 p-2 bg-gray-50">
                 <h2 className="font-bold">Company Bank Details</h2>
-                <p>Bank Name: Punjab National Bank</p>
-                <p>Account No.: 6193002100003379</p>
-                <p>IFSC: PUNB0619300</p>
-                <p>Branch: Vibhuti Khand, Gomti Nagar, Lucknow</p>
+                <p>Bank Name: PUNJAB NATIONAL BANK</p>
+                <p>Account No.: 0347102100000239</p>
+                <p>IFSC: PUNB0034710</p>
+                <p>Branch: PUNJAB NATIONAL BANK, MEHMOOD NAGAR</p>
               </div>
             </div>
 
@@ -835,8 +841,8 @@ export default function QuotationPage() {
 
           {!isEmployee && (
           <>
-          {/* ================= PAGE 3 - ANNEXURE 2 ================= */}
-          <div className="w-[794px] h-[1123px] p-6 relative">
+          {/* ================= PAGE 3 - AGREEMENT (Part 1) ================= */}
+          <div className="w-[794px] min-h-[1123px] p-6 relative flex flex-col" style={{ pageBreakBefore: 'always' }}>
 
             {/* Watermark */}
             <div className="absolute inset-0 flex items-center justify-center opacity-10 watermark">
@@ -844,55 +850,60 @@ export default function QuotationPage() {
             </div>
 
             {/* Header Image */}
-            <div className="relative z-10 mb-6">
+            <div className="relative z-10">
               <img src="/gargeeheader.png" alt="header" width={754} height={50} className="w-full"/>
             </div>
 
-            {/* ANNEXURE 2 TITLE */}
-            <div className="text-center text-sm font-bold mb-4">
-              ANNEXURE 2
-            </div>
+            {/* AGREEMENT CONTENT - Part 1 */}
+            <div className="text-[12px] space-y-1 relative z-10 mt-2 flex-1">
+              <p className="text-center text-xs font-bold mb-1">Applicant and the registered/empanelled Vendor for installation of rooftop solar system in II</p>
 
-            {/* AGREEMENT TITLE */}
-            <div className="text-center text-sm font-semibold mb-4">
-              Model Draft Agreement between Consumer & Vendor for installation of grid connected rooftop solar (RTS) project under PM – Surya Ghar: Muft Bijli Yojana
-            </div>
+              <div className="text-center text-xs mb-1">
+                <p>This agreement is executed on <strong>{form.date}</strong> for design, installation, commissioning and five years comprehensive maintenance of rooftop solar system to be installed under simplified procedure of Rooftop Solar Program Ph-II</p>
+              </div>
 
-            {/* AGREEMENT CONTENT */}
-            <div className="text-sm space-y-2">
-               <p>This agreement is executed on {form.date} for design, supply, installation, commissioning and 5-year comprehensive maintenance of RTS project/system along with warranty under PM Surya Ghar: Muft Bijli Yojana.</p>
+              <p className="text-center font-semibold">Between</p>
 
-               <p><strong>Between</strong></p>
-               <p><strong>{form.customerName}</strong> address {form.address}, (hereinafter referred to as first Party i.e.)</p>
+              <p><strong>{form.customerName}</strong> having residential electricity connection with consumer number from <strong>{form.electricityBillNo}</strong> MADHYANCHAL VIDYUT VITRAN NIGAM LTD. <strong>{form.address}</strong>.</p>
 
-              <p><strong>And</strong></p>
-              <p>Gargee Solar having registered office at D - 62, 2nd Floor Vibhuti khand gomti nagar, Lucknow U.P. 226010, Phone :- +91- 8736915465, 9415336145.</p>
+              <p className="text-center font-semibold">AND</p>
 
-              <p><strong>Whereas</strong></p>
-              <p>First Party wishes to installation Grid Connected Rooftop Solar Plant on the rooftop of the residential building of the Consumer under PM Surya Ghar: Muft Bijli Yojana.</p>
+              <p><strong>Gargee Enterprises</strong> is registered/ empanelled with the Madhyanchal Vidyut Vitaran Nigam Ltd. and is having registered/functional office at Nai Basti Dhanewa Malihabad Lucknow- Utter Pradesh-226102</p>
 
-              <p><strong>And whereas</strong></p>
-              <p>Second Party has verified availability of appropriate roof and found it feasible to install a Grid Connected Roof Top Solar plant and that the second party is willing to design, supply, install, test, commission and carry out Operation & Maintenance of the Rooftop Solar plant for 5 year period On this day, the First Party and Second Party agree to the following:</p>
+              <p>Both Applicant and the Vendor are jointly referred as Parties.</p>
 
-              <p><strong>The First Party here by undertakes to perform the following activities:</strong></p>
-              <ol className="list-decimal list-inside space-y-1">
-                <li>Submission of online application at National Portal for installation of RTS project/system, Submission of application for net-metering and system inspection and upload of the relevant documents on the National Portal of the scheme.</li>
-                <li>Provide secure storage of the material of the RTS plant delivered at the premises till handover of the system.</li>
-                <li>Provide access to the Roof Top during installation of the plant, operation & maintenance, testing of the plant and equipment and for meter reading from solar meter, inverter etc.</li>
-                <li>Provide electricity during plant installation and water for cleaning of the panels.</li>
-                <li>Report any malfunctioning of the plant to the Vendor during the warranty period.</li>
-                <li>Pay the amount as per the payment schedule as mutually agreed with the vendor, including any additional amount to the second party for any additional work</li>
-              </ol>
+              <p className="font-semibold">Whereas</p>
+              <p>The Applicant intends to install rooftop solar system under simplified procedure of Rooftop Solar Program Ph-II of the MNRE.</p>
+              <p>The Vendor is registered/empanelled vendor with DISCOM for installation of rooftop solar under MNRE Schemes. The Vendor satisfies all the existing regulation pertaining to electrical safety and license in the respective state and it is not debarred or blacklisted from undertaking any such installations by any state/central Government agency.</p>
+              <p>Both the parties are mutually agreed and understand their roles and responsibilities and have no liability to any other agency/firm/stakeholder especially to DISCOM and MNRE.</p>
+
+              <p className="font-semibold mt-1">1- GENERAL TERMS:</p>
+              <p>The Applicant hereby represents, and warrants that the Applicant has the sole legal capacity to enter into this Agreement and authorize the construction] installation and commissioning of the Rooftop Solar System ({form.address}) which is inclusive of Balance of System ("BoS") on the Applicant's premises- The Vendor reserves its right to verify ownership of the Applicant Site and Applicant covenants to co-operate and provide all information and documentation required by the Vendor for the same.</p>
+
+              <p><strong>1.1.</strong> Vendor may propose changes to the scope] nature and or schedule of the services being performed under this Agreement- All proposed changes must be mutually agreed between the Parties- If Parties fail to agree on the variation proposed either Party may terminate this Agreement by serving notice as per Clause</p>
+              <p><strong>1.2.</strong> The Applicant understands and agrees that future changes in load] electricity usage patterns and/or electricity tariffs may affect the economics of the RTS System and these factors have not been and cannot be considered in any analysis or quotation provided by Vendor or its Authorized Persons (defined below)</p>
+
+              <p className="font-semibold">2- RTS System</p>
+              <p><strong>2.1.</strong> Total capacity of RTS System will be minimum {form.kilowatt} kWp-</p>
+              <p><strong>2.2.</strong> The Solar modules, inverters and BoS will confirm to minimum specifications and DCR requirement of MNRE.</p>
+              <p><strong>2.3.</strong> Solar Module of {form.panelCompanyName} capacity each and 22% efficiency will be procured and installed by the Vendor</p>
+              <p><strong>2.4.</strong> Solar inverter {form.inverterCompanyName} Model, {form.kilowatt} kW rated output capacity will be procured and installed by the Vendor</p>
+              <p><strong>2.5.</strong> Module mounting structure has to withstand minimum wind load pressure as specified by MNRE. The height of the Structure according maximum of 8 to 9 feet. But the consumer themselves will be responsible for any height beyond that</p>
+              <p><strong>2.6.</strong> Other BoS installations shall be as per best industry practice with all safety and protection gears installed by the vendor.</p>
+
+              <p className="font-semibold">3. PRICE AND PAYMENT TERMS</p>
+              <p><strong>3.1.</strong> The cost of RTS System will be Rs- {form.price}/- The Applicant shall pay the total cost to the Vendor as under: 20% as an advance on confirmation of the order; 80% against Proforma Invoice (PI) before dispatch of solar panels inverters and other BoS items to be delivered;</p>
+              <p><strong>3.2.</strong> The order value and payment terms are fixed and will not be subject to any adjustment except as approved in writing by Vendor.</p>
             </div>
 
             {/* FOOTER PAGE 3 */}
-            <div className="absolute bottom-6 left-10 right-10">
+            <div className="relative z-10 mt-auto pt-2">
               <img src="/gargeefooter.png" alt="footer" width={754} height={20} className="w-full"/>
             </div>
           </div>
 
-          {/* ================= PAGE 4 - ANNEXURE 2 CONTINUATION ================= */}
-          <div className="w-[794px] h-[1123px] p-6 relative">
+          {/* ================= PAGE 4 - AGREEMENT (Part 2) ================= */}
+          <div className="w-[794px] min-h-[1123px] p-6 relative flex flex-col" style={{ pageBreakBefore: 'always' }}>
 
             {/* Watermark */}
             <div className="absolute inset-0 flex items-center justify-center opacity-10 watermark">
@@ -900,35 +911,51 @@ export default function QuotationPage() {
             </div>
 
             {/* Header Image */}
-            <div className="relative z-10 mb-6">
+            <div className="relative z-10">
               <img src="/gargeeheader.png" alt="header" width={754} height={50} className="w-full"/>
             </div>
 
-            {/* AGREEMENT CONTENT CONTINUATION */}
-            <div className="text-sm space-y-2">
-              <p>/customization required depending upon the building condition</p>
+            {/* AGREEMENT CONTENT - Part 2 */}
+            <div className="text-[12px] space-y-1 relative z-10 mt-2 flex-1">
+              <p className="font-semibold">4. REPRESENTATIONS MADE BY THE APPLICANT:</p>
+              <p>The Applicant acknowledges and agrees that:</p>
+              <p><strong>4.1.</strong> any timeline or schedule shared by Vendor is only an estimate and Vendor will not be liable for any delay that is not attributable to Vendor;</p>
+              <p><strong>4.2.</strong> all information disclosed by the Applicant to Vendor is true and accurate, and acknowledges that Vendor has relied on the information produced by the Applicant;</p>
+              <p><strong>4.3.</strong> all descriptive specifications, illustrations, drawings, data, dimensions, quotation, price lists and any advertising material circulated by Vendor are approximate only;</p>
+              <p><strong>4.4.</strong> any drawings, specifications and plans composed by Vendor shall require the Applicant's approval within 5 (five) days;</p>
+              <p><strong>4.5.</strong> the Applicant shall not use the RTS System other than in accordance with the product manufacturer's specifications;</p>
+              <p><strong>4.6.</strong> The Applicant warrants that: all electrical and plumbing infrastructure at the Applicant Site are in conformity with applicable laws; the Applicant has the legal capacity to permit unfettered access to Vendor; the Applicant will provide requisite power, water and storage facilities; the Applicant will ensure shadow free area; Vendor is entitled to permit geo-tagging of the Applicant Site; Vendor is entitled to take photographs for promotional activities.</p>
 
-              <p><strong>The Second Party hereby undertakes to perform the following activities:</strong></p>
+              <p className="font-semibold">5. MAINTENANCE</p>
+              <p><strong>5.1.</strong> Vendor shall provide five-year free workmanship maintenance at least once every quarter.</p>
+              <p><strong>5.2.</strong> Vendor shall check all nuts and bolts, fuses, earth resistance and other consumables.</p>
+              <p><strong>5.3.</strong> Cleaning is Applicant responsibility as per the dusting frequency.</p>
 
-              <ol className="list-decimal list-inside space-y-2">
-                <li>The Vendor must follow all the standards and safety guidelines prescribed under state regulations and technical standards prescribed by MNRE for RTS projects, failing which the vendor is liable for blacklisting from participation in the govt. project/ scheme and other penal actions in accordance with the law. The responsibility of supply, installation and commissioning of the rooftop solar project/system in complete compliance with MNRE scheme guidelines lies with the Vendor.</li>
-                <li>Site Survey: Site visit, survey and development of detailed project report for installation of RTS system. This also includes, feasibility study of roof, strength of roof and shadow free area. If any additional work or customization is involved for the plant installation as per site condition and requirement of the consumer building, the Vendor shall prepare an estimate and can raise separate invoice including GST in addition to the amount towards standard plant cost. The consumer shall pay the amount for such additional work directly to the Vendor.</li>
-                <li>Design & Engineering: Design of plant along with drawings and selection of components as per standard provided by the DISCOM/SERC/MNRE for best performance and safety of the plant.</li>
-                <li>Module and Inverter: The solar modules, including the solar cells, should be manufactured in India. Both the solar modules and inverters shall conform to the relevant standards and specifications prescribed by MNRE. Any other requirement, viz. star labeling (solar modules), quality control orders and standards & labeling (inverters) etc., shall also be complied.</li>
-                <li>Procurement & Supply: Procurement of complete system as per BIS/IS/IEC standard (whatever applicable) & safety guidelines for installation of rooftop solar plants. The supplied materials should comply with all MNRE standards for release of subsidy.</li>
-                <li>Installation & Civil work: Complete civil work, structure work and electrical work (including drawings) following all the safety and relevant BIS standards.</li>
-                <li>Documentation (Technical Catalogues/Warranty Certificates/BIS certificates/other test reports etc): All such documents shall be provided to the consumer for online uploading and submission of technical specifications, IEC/BIS report, Sr. Nos, Warranty card of Solar Panel & Inverter, Layout & Electrical SLD, Structure Design and Drawing,</li>
-              </ol>
+              <p className="font-semibold">6. ACCESS AND RIGHT OF ENTRY:</p>
+              <p><strong>6.1.</strong> The Applicant grants permission to Vendor for feasibility study, storing, installing, inspecting, repairing and maintaining the RTS System.</p>
+              <p><strong>6.2.</strong> The Applicant shall ensure third-party consents necessary for access are obtained.</p>
+
+              <p className="font-semibold">7. WARRANTIES:</p>
+              <p><strong>7.1.</strong> Product Warranty: The Applicant shall be entitled to manufacturers' warranty.</p>
+              <p><strong>7.2.</strong> Installation Warranty: Vendor warrants installations free from workmanship defects for five years.</p>
+              <p><strong>7.3.</strong> Solar modules shall have tolerance within +/-5% range, provided the RTS System is properly maintained.</p>
+              <p><strong>7.4.</strong> Exceptions: Any attempt by unauthorized person to repair shall disentitle warranty. Vendor not liable for damage due to external causes including accidents, misuse, neglect, Force Majeure.</p>
+
+              <p className="font-semibold">8. PERFORMANCE GUARANTEE</p>
+              <p><strong>8.1.</strong> Vendor guarantees minimum system performance ratio of 70% for five years.</p>
+
+              <p className="font-semibold">9. INSURANCE:</p>
+              <p><strong>9.1.</strong> Vendor may obtain insurance during transit until commissioning. Thereafter, risk passes to Applicant.</p>
             </div>
 
             {/* FOOTER PAGE 4 */}
-            <div className="absolute bottom-6 left-10 right-10">
+            <div className="relative z-10 mt-auto pt-2">
               <img src="/gargeefooter.png" alt="footer" width={754} height={20} className="w-full"/>
             </div>
           </div>
 
-          {/* ================= PAGE 5 - ANNEXURE 2 CONTINUATION ================= */}
-          <div className="w-[794px] h-[1123px] p-6 relative">
+          {/* ================= PAGE 5 - AGREEMENT (Part 3) ================= */}
+          <div className="w-[794px] min-h-[1123px] p-6 relative flex flex-col" style={{ pageBreakBefore: 'always' }}>
 
             {/* Watermark */}
             <div className="absolute inset-0 flex items-center justify-center opacity-10 watermark">
@@ -936,75 +963,59 @@ export default function QuotationPage() {
             </div>
 
             {/* Header Image */}
-            <div className="relative z-10 mb-6">
+            <div className="relative z-10">
               <img src="/gargeeheader.png" alt="header" width={754} height={50} className="w-full"/>
             </div>
 
-            {/* AGREEMENT CONTENT CONTINUATION */}
-            <div className="text-sm space-y-2">
-              <ol className="list-decimal list-inside space-y-1" start={7}>
-                <li>Cable and other detailed documents.</li>
-                <li>Project completion report (PCR): Assisting the consumer in filling and uploading of signed documents (Consumer & Vendor) on the national portal.</li>
-                <li>Warranty: System warranty certificates should be provided to the consumer. The complete system should be warranted for 5 years from the date of commissioning by DISCOM. Individual component warranty documents provided by the manufacturer shall be provided to the consumer and all possible assistance should be extended to the consumer for claiming the warranty from the manufacturer.</li>
-                <li>NET meter & Grid Connectivity: Net meter supply/procurement, testing and approvals shall be in the scope of vendor. Grid connection of the plant shall be in the scope of the vendor.</li>
-                <li>Testing and Commissioning: The vendor shall be present at the time of testing and commissioning by the DISCOM. Operation & Maintenance: Five (5) years Comprehensive Operation and Maintenance including overhauling, wear and tear and regular checking of healthiness of system at proper interval shall be in the scope of vendor. The vendor shall also educate the consumer on best practices for cleaning of the modules and system maintenance.</li>
-                <li>Insurance: Any insurance cost pertaining to material transfer/storage before commissioning of the system shall be in the scope of the vendor.</li>
-                <li>Applicable Standard: The system must meet the technical standards and specifications notified by MNRE. The vendor is solely responsible to supply component and service which meets the technical standards and specification prescribed by MNRE and State DISCOMs.</li>
-                <li>Project/system cost & payment terms: The cost of the plant and payment schedule should be mutually discussed and decided between the vendor and consumer. The consumer may opt for milestone-based payment to the vendor and the same shall be included in the agreement</li>
-                <li>Dispute: In-case of any dispute between consumer and vendor (in supply/installation/maintenance of system or payment terms), both parties must settle the same mutually or as per law. MNRE/DISCOM shall not be liable for, and would not be a party to any dispute arising between vendor and consumer.</li>
-                <li>Subsidy / Project Related Documents: Vendor must provide all the documents to consumer and help in uploading the same to National Portal for smooth release of subsidy.</li>
-              </ol>
+            {/* AGREEMENT CONTENT - Part 3 */}
+            <div className="text-[12px] space-y-1 relative z-10 mt-2 flex-1">
+              <p className="font-semibold">10. CANCELLATION:</p>
+              <p><strong>10.1.</strong> Applicant may cancel within 7 days from order confirmation.</p>
+              <p><strong>10.2.</strong> After 7 days, cancellation fee of XX% of total order value plus costs incurred.</p>
+              <p><strong>10.3.</strong> Applicant cannot cancel after dispatch of RTS System.</p>
+
+              <p className="font-semibold">11. LIMITATION OF LIABILITY AND INDEMNITY:</p>
+              <p><strong>11.1.</strong> Vendor's liability is limited to repairing/replacing the RTS System or refund of moneys paid.</p>
+
+              <p className="font-semibold">12. SUSPENSION AND TERMINATION:</p>
+              <p><strong>12.1.</strong> If Applicant fails to pay, Vendor may suspend obligations until outstanding amounts are paid.</p>
+
+              <p className="font-semibold">13- NOTICES:</p>
+              <p>Any notice shall be in writing, in English, delivered by email or registered post.</p>
+
+              <p className="font-semibold">14. FORCE MAJEURE EVENT:</p>
+              <p><strong>14.1.</strong> Neither Party liable for delay due to war, riot, earthquake, fire, flood, pandemic, strikes, acts of government ("Force Majeure Event").</p>
+
+              <p className="font-semibold">15. GOVERNING LAW AND DISPUTE RESOLUTION:</p>
+              <p><strong>15.1.</strong> This Agreement shall be governed by the laws of India.</p>
+              <p><strong>15.2.</strong> Any dispute shall be resolved by arbitration as per the Arbitration and Conciliation Act, 1996.</p>
+              <p><strong>15.3.</strong> The arbitration shall be by a sole arbitrator mutually appointed by the Parties.</p>
+
+              {/* SIGNATURE SECTION */}
+              <div className="flex justify-between mt-4 pt-3 border-t">
+                <div className="text-center">
+                  <p><strong>(Applicant)</strong></p>
+                  <p className="mt-6">{form.customerName}</p>
+                  <p className="mt-3">Sign: ___________________________</p>
+                </div>
+                <div className="text-center">
+                  <p><strong>M/S Gargee Enterprises</strong></p>
+                  <p className="mt-6">(Vendor)</p>
+                  <img src="/mohar.png" alt="Authorised Signatory" width={70} height={35} className="mx-auto mt-1" />
+                  <p className="mt-1">Sign: ___________________________</p>
+                </div>
+              </div>
+
+              <div className="mt-2 text-[10px]">
+                <p className="font-semibold">Witness:-</p>
+                <p>1- ___________________________</p>
+                <p>2- ___________________________</p>
+              </div>
+
             </div>
 
             {/* FOOTER PAGE 5 */}
-            <div className="absolute bottom-6 left-10 right-10">
-              <img src="/gargeefooter.png" alt="footer" width={754} height={20} className="w-full"/>
-            </div>
-          </div>
-
-          {/* ================= PAGE 6 - ANNEXURE 2 CONTINUATION ================= */}
-          <div className="w-[794px] h-[1123px] p-6 relative">
-
-            {/* Watermark */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-10 watermark">
-              <img src="/gargeelogonobg.png" alt="logo" width={400} height={400}/>
-            </div>
-
-            {/* Header Image */}
-            <div className="relative z-10 mb-6">
-              <img src="/gargeeheader.png" alt="header" width={754} height={50} className="w-full"/>
-            </div>
-
-            {/* AGREEMENT CONTENT CONTINUATION */}
-            <div className="text-sm space-y-2">
-              <ol className="list-decimal list-inside space-y-1" start={11}>
-                <li>Performance of Plant: The Performance Ratio (PR) of Plant must be 75% at the time of commissioning of the project by DISCOM or its authorized agency. Vendor must provide (returnable basis) radiation sensor with valid calibration certificate of any NABL/International laboratory at the time of commissioning/testing of the plant. Vendor must maintain the PR of the plant till warranty of project i.e. 5 years from the date of commissioning.</li>
-              </ol>
-
-              <h2 className="text-blue-600 font-semibold">19. Mutually Agreed Terms of Pay</h2>
-
-              <p>Total system cost: ₹ {form.price}/- (to be filled based on invoice)</p>
-              <p>Payment Schedule: 100% advance payment before installation.</p>
-
-               <div className="flex justify-between mt-4">
-                 <div className="text-center">
-                   <p><strong>First Party</strong></p>
-                   <p><strong>{form.customerName}</strong></p>
-                   <p className="mt-4">Sign:</p>
-                   <p>___________________________</p>
-                 </div>
-                <div className="text-center">
-                  <p><strong>Second Party</strong></p>
-                  <p>Gargee Solar Lucknow</p>
-                  <img src="/mohar.png" alt="Authorised Signatory Gargee Solar Lucknow" width={100} height={50} className="  mt-2" />
-                  <p className="mt-4">Sign:</p>
-                  <p>___________________________</p>
-                </div>
-              </div>
-            </div>
-
-            {/* FOOTER PAGE 6 */}
-            <div className="absolute bottom-4 left-10 right-10">
+            <div className="relative z-10 mt-auto pt-2">
               <img src="/gargeefooter.png" alt="footer" width={754} height={20} className="w-full"/>
             </div>
           </div>

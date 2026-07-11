@@ -29,6 +29,7 @@ interface Job {
 
 export default function AdminCareersPage() {
   const router = useRouter()
+  const [isEmployee, setIsEmployee] = useState(false)
   const [applications, setApplications] = useState<(CareerApplication & { id: string })[]>([])
   const [jobs, setJobs] = useState<Job[]>([])
   const [loading, setLoading] = useState(true)
@@ -60,8 +61,7 @@ export default function AdminCareersPage() {
   useEffect(() => {
     const employeeData = sessionStorage.getItem('employeeData');
     if (employeeData) {
-      router.push('/gsadmin');
-      return;
+      setIsEmployee(true);
     }
 
     const loadApplications = async () => {
@@ -164,13 +164,15 @@ export default function AdminCareersPage() {
           <h1 className="text-4xl font-bold text-primary mb-2">Careers</h1>
           <p className="text-foreground/70">Manage job postings and applications</p>
         </div>
-        <Button
-          onClick={() => setShowJobForm(!showJobForm)}
-          className="bg-secondary text-secondary-foreground hover:bg-secondary/90 gap-2"
-        >
-          <Plus className="w-4 h-4" />
-          Post Job
-        </Button>
+        {!isEmployee && (
+          <Button
+            onClick={() => setShowJobForm(!showJobForm)}
+            className="bg-secondary text-secondary-foreground hover:bg-secondary/90 gap-2"
+          >
+            <Plus className="w-4 h-4" />
+            Post Job
+          </Button>
+        )}
       </div>
 
       {showJobForm && (
@@ -293,10 +295,10 @@ export default function AdminCareersPage() {
                             <div className="flex justify-between">
                               <h3 className="font-semibold">{job.title}</h3>
                               <div className="flex gap-1">
-                                <Button size="sm" variant="outline" onClick={() => handleEditJob(job)}>
+                                <Button size="sm" variant="outline" onClick={() => handleEditJob(job)} disabled={isEmployee}>
                                   <Edit2 className="w-4 h-4" />
                                 </Button>
-                                <Button size="sm" variant="outline" className="text-destructive" onClick={() => handleDeleteJob(job.id)}>
+                                <Button size="sm" variant="outline" className="text-destructive" onClick={() => handleDeleteJob(job.id)} disabled={isEmployee}>
                                   <Trash2 className="w-4 h-4" />
                                 </Button>
                               </div>
@@ -332,10 +334,10 @@ export default function AdminCareersPage() {
                             <TableCell>{new Date(job.createdAt).toLocaleDateString()}</TableCell>
                             <TableCell>
                               <div className="flex gap-2">
-                                <Button size="sm" variant="outline" onClick={() => handleEditJob(job)}>
+                                <Button size="sm" variant="outline" onClick={() => handleEditJob(job)} disabled={isEmployee}>
                                   <Edit2 className="w-4 h-4" />
                                 </Button>
-                                <Button size="sm" variant="outline" className="text-destructive" onClick={() => handleDeleteJob(job.id)}>
+                                <Button size="sm" variant="outline" className="text-destructive" onClick={() => handleDeleteJob(job.id)} disabled={isEmployee}>
                                   <Trash2 className="w-4 h-4" />
                                 </Button>
                               </div>
