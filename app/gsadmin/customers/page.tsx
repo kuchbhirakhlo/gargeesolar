@@ -710,27 +710,23 @@ export default function AdminCustomersPage() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
                     <Label htmlFor="acWireBrand">AC Wire Brand</Label>
-                    <Select value={formData.acWireBrand} onValueChange={(value) => handleSelectChange('acWireBrand', value)}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select AC wire brand" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="havels">Havels</SelectItem>
-                        <SelectItem value="polycab">Polycab</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <Input
+                      id="acWireBrand"
+                      name="acWireBrand"
+                      value={formData.acWireBrand}
+                      onChange={handleChange}
+                      placeholder="Enter AC wire brand"
+                    />
                   </div>
                   <div>
                     <Label htmlFor="dcWireBrand">DC Wire Brand</Label>
-                    <Select value={formData.dcWireBrand} onValueChange={(value) => handleSelectChange('dcWireBrand', value)}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select DC wire brand" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="havels">Havels</SelectItem>
-                        <SelectItem value="polycab">Polycab</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <Input
+                      id="dcWireBrand"
+                      name="dcWireBrand"
+                      value={formData.dcWireBrand}
+                      onChange={handleChange}
+                      placeholder="Enter DC wire brand"
+                    />
                   </div>
                   <div>
                     <Label htmlFor="earthingWire">Earthing Wire</Label>
