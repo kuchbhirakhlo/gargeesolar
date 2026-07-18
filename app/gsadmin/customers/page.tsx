@@ -167,7 +167,7 @@ export default function AdminCustomersPage() {
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
     const requiredFields = [
-      'systemType', 'customerName', 'address', 'pincode', 'mobileNumber', 'electricityBillNumber', 'kilowatt', 'panelCompanyName', 'inverterCompanyName', 'referredBy', 'quotationPrice', 'dealPrice'
+      'systemType', 'customerName', 'address', 'pincode', 'mobileNumber', 'kilowatt', 'panelCompanyName', 'inverterCompanyName', 'referredBy', 'quotationPrice', 'dealPrice'
     ];
 
     requiredFields.forEach(field => {
@@ -499,6 +499,7 @@ export default function AdminCustomersPage() {
                           <SelectItem value="Waaree">Waaree</SelectItem>
                           <SelectItem value="Tata">Tata</SelectItem>
                           <SelectItem value="Oswal Solar">Oswal Solar</SelectItem>
+                          <SelectItem value="Rayax Panel">Rayax Panel</SelectItem>
                         </SelectContent>
                       </Select>
                       {errors.panelCompanyName && <p className="text-red-500 text-sm">{errors.panelCompanyName}</p>}
