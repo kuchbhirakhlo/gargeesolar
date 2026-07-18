@@ -47,6 +47,7 @@ interface Quotation {
   referredBy: string;
   acWire: string;
   dcWire: string;
+  acdbDcdb: string;
   structure: string;
   electricityBillNo: string;
   createdAt: string;
@@ -170,7 +171,7 @@ const QuotationPDF = ({ form }: { form: any }) => (
           <View style={styles.tableRow}>
             <Text style={styles.tableCell}>6</Text>
             <Text style={styles.tableCell}>ACDB & DCDB</Text>
-            <Text style={styles.tableCell}>Polycab / Havells</Text>
+            <Text style={styles.tableCell}>{form.acdbDcdb || "Polycab / Havells"}</Text>
           </View>
           <View style={styles.tableRow}>
             <Text style={styles.tableCell}>7</Text>
@@ -291,6 +292,7 @@ export default function QuotationPage() {
     referredBy: "",
     acWire: "",
     dcWire: "",
+    acdbDcdb: "",
     structure: "",
     electricityBillNo: "",
   });
@@ -466,6 +468,7 @@ export default function QuotationPage() {
       referredBy: quotation.referredBy,
       acWire: quotation.acWire || "",
       dcWire: quotation.dcWire || "",
+      acdbDcdb: quotation.acdbDcdb || "",
       structure: quotation.structure || "",
       electricityBillNo: quotation.electricityBillNo || "",
     });
@@ -522,7 +525,7 @@ export default function QuotationPage() {
         setIsEditing(false);
         setSelectedQuotation(null);
         // Reset form for new quotation (quotationNo and date will be updated by useEffect)
-        setForm(prev => ({ ...prev, customerId: "", customerName: "", address: "", batteryCompanyName: "", systemType: "", kilowatt: "", panelCompanyName: "", inverterCompanyName: "", referredBy: "", price: "", acWire: "", dcWire: "", structure: "", electricityBillNo: "" }));
+        setForm(prev => ({ ...prev, customerId: "", customerName: "", address: "", batteryCompanyName: "", systemType: "", kilowatt: "", panelCompanyName: "", inverterCompanyName: "", referredBy: "", price: "", acWire: "", dcWire: "", acdbDcdb: "", structure: "", electricityBillNo: "" }));
       });
     }
   };
@@ -662,6 +665,7 @@ export default function QuotationPage() {
           <input name="price" value={form.price} onChange={handleChange} placeholder="Price" className="border p-2"/>
           <input name="acWire" value={form.acWire} onChange={handleChange} placeholder="AC Wire" className="border p-2"/>
           <input name="dcWire" value={form.dcWire} onChange={handleChange} placeholder="DC Wire" className="border p-2"/>
+          <input name="acdbDcdb" value={form.acdbDcdb} onChange={handleChange} placeholder="ACDB & DCDB" className="border p-2"/>
           <input name="electricityBillNo" value={form.electricityBillNo} onChange={handleChange} placeholder="Electricity Bill No" className="border p-2"/>
           <input name="structure" value={form.structure} onChange={handleChange} placeholder="Structure" className="border p-2"/>
         </div>
@@ -739,7 +743,7 @@ export default function QuotationPage() {
                     const max = kw * 5;
                     return `${min}–${max} Units per Day`;
                   })() : "Units per Day"}</td></tr>
-                  <tr><td className="border p-2">6</td><td className="border p-2">ACDB & DCDB</td><td className="border p-2">Polycab / Havells</td></tr>
+                  <tr><td className="border p-2">6</td><td className="border p-2">ACDB & DCDB</td><td className="border p-2">{form.acdbDcdb || "Polycab / Havells"}</td></tr>
                   <tr><td className="border p-2">7</td><td className="border p-2">AC Wire</td><td className="border p-2">{form.acWire || "Polycab (4 sq mm)"}</td></tr>
                   <tr><td className="border p-2">8</td><td className="border p-2">DC Wire</td><td className="border p-2">{form.dcWire || "Polycab (4 sq mm)"}</td></tr>
                   <tr><td className="border p-2">9</td><td className="border p-2">Earthing</td><td className="border p-2">Green (4 sq mm)</td></tr>
