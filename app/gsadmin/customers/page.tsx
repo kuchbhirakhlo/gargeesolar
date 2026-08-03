@@ -491,54 +491,38 @@ export default function AdminCustomersPage() {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
                       <Label htmlFor="systemType">System Type <span className="text-red-500">*</span></Label>
-                      <Select value={formData.systemType} onValueChange={(value) => handleSelectChange('systemType', value)}>
-                        <SelectTrigger className={errors.systemType ? 'border-red-500' : ''}>
-                          <SelectValue placeholder="Select system type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="on grid">On Grid</SelectItem>
-                          <SelectItem value="hybrid">Hybrid</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <Input
+                        id="systemType"
+                        name="systemType"
+                        value={formData.systemType}
+                        onChange={handleChange}
+                        placeholder="Enter system type (e.g., On Grid, Hybrid)"
+                        className={errors.systemType ? 'border-red-500' : ''}
+                      />
                       {errors.systemType && <p className="text-red-500 text-sm">{errors.systemType}</p>}
                     </div>
                     <div>
                       <Label htmlFor="kilowatt">Kilowatt (kW) <span className="text-red-500">*</span></Label>
-                      <Select value={formData.kilowatt} onValueChange={(value) => handleSelectChange('kilowatt', value)} disabled={!formData.systemType}>
-                        <SelectTrigger className={errors.kilowatt ? 'border-red-500' : ''}>
-                          <SelectValue placeholder={formData.systemType ? "Select KW" : "Select system type first"} />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="2kw">2kw</SelectItem>
-                          <SelectItem value="3kw">3kw</SelectItem>
-                          <SelectItem value="4kw">4kw</SelectItem>
-                          <SelectItem value="5kw">5kw</SelectItem>
-                          <SelectItem value="6kw">6kw</SelectItem>
-                          <SelectItem value="7kw">7kw</SelectItem>
-                          <SelectItem value="8kw">8kw</SelectItem>
-                          <SelectItem value="9kw">9kw</SelectItem>
-                          <SelectItem value="10kw">10kw</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <Input
+                        id="kilowatt"
+                        name="kilowatt"
+                        value={formData.kilowatt}
+                        onChange={handleChange}
+                        placeholder="Enter kilowatt (e.g., 2kw, 5kw, 10kw)"
+                        className={errors.kilowatt ? 'border-red-500' : ''}
+                      />
                       {errors.kilowatt && <p className="text-red-500 text-sm">{errors.kilowatt}</p>}
                     </div>
                     <div>
                       <Label htmlFor="panelCompanyName">Panel Company Name <span className="text-red-500">*</span></Label>
-                      <Select value={formData.panelCompanyName} onValueChange={(value) => handleSelectChange('panelCompanyName', value)} disabled={!formData.systemType}>
-                        <SelectTrigger className={errors.panelCompanyName ? 'border-red-500' : ''}>
-                          <SelectValue placeholder={formData.systemType ? "Select panel company" : "Select system type first"} />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="Premier Energies">Premier</SelectItem>
-                          <SelectItem value="Adani">Adani</SelectItem>
-                          <SelectItem value="Utl Fujiyama">Utl Fujiyama</SelectItem>
-                          <SelectItem value="Vikram Solar">Vikram Solar</SelectItem>
-                          <SelectItem value="Waaree">Waaree</SelectItem>
-                          <SelectItem value="Tata">Tata</SelectItem>
-                          <SelectItem value="Oswal Solar">Oswal Solar</SelectItem>
-                          <SelectItem value="Rayax Panel">Rayax Panel</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <Input
+                        id="panelCompanyName"
+                        name="panelCompanyName"
+                        value={formData.panelCompanyName}
+                        onChange={handleChange}
+                        placeholder="Enter panel company name"
+                        className={errors.panelCompanyName ? 'border-red-500' : ''}
+                      />
                       {errors.panelCompanyName && <p className="text-red-500 text-sm">{errors.panelCompanyName}</p>}
                     </div>
                   </div>
