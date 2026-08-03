@@ -52,6 +52,8 @@ export default function AdminCustomersPage() {
   const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [viewDialog, setViewDialog] = useState(false);
+  const [isViewDialogEditing, setIsViewDialogEditing] = useState(false);
+  const [viewDialogFormData, setViewDialogFormData] = useState<Customer | null>(null);
   const [selectedEmployeeFilter, setSelectedEmployeeFilter] = useState<string>('all');
   const { isLoading, submitForm } = useFormSubmit();
   const [formData, setFormData] = useState({
@@ -229,7 +231,42 @@ export default function AdminCustomersPage() {
 
   const handleView = (customer: Customer) => {
     setSelectedCustomer(customer);
+    setViewDialogFormData(customer);
+    setIsViewDialogEditing(false);
     setViewDialog(true);
+  };
+
+  const handleViewDialogChange = (field: keyof Customer, value: string) => {
+    if (viewDialogFormData) {
+      setViewDialogFormData({
+        ...viewDialogFormData,
+        [field]: value,
+      });
+    }
+  };
+
+  const handleSaveViewDialogChanges = async () => {
+    if (selectedCustomer && viewDialogFormData) {
+      try {
+        const customerRef = doc(db, 'customers', selectedCustomer.id);
+        const updatedData = {
+          panelCompanyName: viewDialogFormData.panelCompanyName,
+          inverterCompanyName: viewDialogFormData.inverterCompanyName,
+          acWireBrand: viewDialogFormData.acWireBrand,
+          dcWireBrand: viewDialogFormData.dcWireBrand,
+          earthingWire: viewDialogFormData.earthingWire,
+          quotationPrice: viewDialogFormData.quotationPrice,
+          dealPrice: viewDialogFormData.dealPrice,
+          kilowatt: viewDialogFormData.kilowatt,
+        };
+        await updateDoc(customerRef, updatedData);
+        setIsViewDialogEditing(false);
+        alert('Solar panel data updated successfully!');
+      } catch (error) {
+        console.error('Error updating solar panel data:', error);
+        alert('Error updating solar panel data');
+      }
+    }
   };
 
 
@@ -892,33 +929,179 @@ export default function AdminCustomersPage() {
       </Card>
 
       <Dialog open={viewDialog} onOpenChange={setViewDialog}>
-        <DialogContent>
+        <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle>Customer Details</DialogTitle>
+            <div className="flex justify-between items-center w-full">
+              <DialogTitle>Customer Details</DialogTitle>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setIsViewDialogEditing(!isViewDialogEditing)}
+              >
+                {isViewDialogEditing ? 'Cancel Editing' : 'Edit Solar Panel Data'}
+              </Button>
+            </div>
           </DialogHeader>
-          {selectedCustomer && (
+          {selectedCustomer && viewDialogFormData && (
             <div className="space-y-4 max-h-96 overflow-y-auto">
-              <div><strong>System Type:</strong> {selectedCustomer.systemType}</div>
-              <div><strong>Name:</strong> {selectedCustomer.customerName}</div>
-              <div><strong>Address:</strong> {selectedCustomer.address}</div>
-              <div><strong>Pincode:</strong> {selectedCustomer.pincode}</div>
-              <div><strong>Aadhar Card:</strong> {selectedCustomer.aadharCard}</div>
-              <div><strong>PAN Card:</strong> {selectedCustomer.panCard}</div>
-              <div><strong>Mobile:</strong> {selectedCustomer.mobileNumber}</div>
-              <div><strong>Electricity Bill Number:</strong> {selectedCustomer.electricityBillNumber}</div>
-              <div><strong>Kilowatt:</strong> {selectedCustomer.kilowatt} kW</div>
-              <div><strong>Panel Company:</strong> {selectedCustomer.panelCompanyName}</div>
-              <div><strong>Inverter Company:</strong> {selectedCustomer.inverterCompanyName}</div>
-              <div><strong>Referred By:</strong> {selectedCustomer.referredBy}</div>
-              <div><strong>Bank Account:</strong> {selectedCustomer.bankAccountNumber}</div>
-              <div><strong>IFSC:</strong> {selectedCustomer.bankIfscCode}</div>
-              <div><strong>Bank Name:</strong> {selectedCustomer.bankName}</div>
-              <div><strong>Bank Address:</strong> {selectedCustomer.bankAddress}</div>
-               <div><strong>Quotation Price:</strong> {selectedCustomer.quotationPrice}</div>
-               <div><strong>Deal Price:</strong> {selectedCustomer.dealPrice}</div>
-               <div><strong>AC Wire Brand:</strong> {selectedCustomer.acWireBrand}</div>
-               <div><strong>DC Wire Brand:</strong> {selectedCustomer.dcWireBrand}</div>
-               <div><strong>Earthing Wire:</strong> {selectedCustomer.earthingWire}</div>
+              {/* Basic Information - Read Only */}
+              <div className="border-b pb-4">
+                <h3 className="font-semibold text-lg mb-3">Basic Information</h3>
+                <div><strong>System Type:</strong> {selectedCustomer.systemType}</div>
+                <div><strong>Name:</strong> {selectedCustomer.customerName}</div>
+                <div><strong>Address:</strong> {selectedCustomer.address}</div>
+                <div><strong>Pincode:</strong> {selectedCustomer.pincode}</div>
+                <div><strong>Aadhar Card:</strong> {selectedCustomer.aadharCard}</div>
+                <div><strong>PAN Card:</strong> {selectedCustomer.panCard}</div>
+                <div><strong>Mobile:</strong> {selectedCustomer.mobileNumber}</div>
+                <div><strong>Electricity Bill Number:</strong> {selectedCustomer.electricityBillNumber}</div>
+                <div><strong>Referred By:</strong> {selectedCustomer.referredBy}</div>
+              </div>
+
+              {/* Solar Panel Data - Editable */}
+              <div className="border-b pb-4">
+                <h3 className="font-semibold text-lg mb-3">Solar Panel Data</h3>
+                {isViewDialogEditing ? (
+                  <div className="space-y-3">
+                    <div>
+                      <Label htmlFor="viewKilowatt">Kilowatt (kW)</Label>
+                      <Input
+                        id="viewKilowatt"
+                        value={viewDialogFormData.kilowatt}
+                        onChange={(e) => handleViewDialogChange('kilowatt', e.target.value)}
+                        placeholder="Enter kilowatt"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="viewPanelCompanyName">Panel Company Name</Label>
+                      <Input
+                        id="viewPanelCompanyName"
+                        value={viewDialogFormData.panelCompanyName}
+                        onChange={(e) => handleViewDialogChange('panelCompanyName', e.target.value)}
+                        placeholder="Enter panel company name"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="viewInverterCompanyName">Inverter Company Name</Label>
+                      <Input
+                        id="viewInverterCompanyName"
+                        value={viewDialogFormData.inverterCompanyName}
+                        onChange={(e) => handleViewDialogChange('inverterCompanyName', e.target.value)}
+                        placeholder="Enter inverter company name"
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <div><strong>Kilowatt:</strong> {selectedCustomer.kilowatt} kW</div>
+                    <div><strong>Panel Company:</strong> {selectedCustomer.panelCompanyName}</div>
+                    <div><strong>Inverter Company:</strong> {selectedCustomer.inverterCompanyName}</div>
+                  </>
+                )}
+              </div>
+
+              {/* Wire Details - Editable */}
+              <div className="border-b pb-4">
+                <h3 className="font-semibold text-lg mb-3">Wire Details</h3>
+                {isViewDialogEditing ? (
+                  <div className="space-y-3">
+                    <div>
+                      <Label htmlFor="viewAcWireBrand">AC Wire Brand</Label>
+                      <Input
+                        id="viewAcWireBrand"
+                        value={viewDialogFormData.acWireBrand || ''}
+                        onChange={(e) => handleViewDialogChange('acWireBrand', e.target.value)}
+                        placeholder="Enter AC wire brand"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="viewDcWireBrand">DC Wire Brand</Label>
+                      <Input
+                        id="viewDcWireBrand"
+                        value={viewDialogFormData.dcWireBrand || ''}
+                        onChange={(e) => handleViewDialogChange('dcWireBrand', e.target.value)}
+                        placeholder="Enter DC wire brand"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="viewEarthingWire">Earthing Wire</Label>
+                      <Input
+                        id="viewEarthingWire"
+                        value={viewDialogFormData.earthingWire || ''}
+                        onChange={(e) => handleViewDialogChange('earthingWire', e.target.value)}
+                        placeholder="Enter earthing wire details"
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <div><strong>AC Wire Brand:</strong> {selectedCustomer.acWireBrand}</div>
+                    <div><strong>DC Wire Brand:</strong> {selectedCustomer.dcWireBrand}</div>
+                    <div><strong>Earthing Wire:</strong> {selectedCustomer.earthingWire}</div>
+                  </>
+                )}
+              </div>
+
+              {/* Pricing - Editable */}
+              <div className="border-b pb-4">
+                <h3 className="font-semibold text-lg mb-3">Pricing</h3>
+                {isViewDialogEditing ? (
+                  <div className="space-y-3 grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="viewQuotationPrice">Quotation Price</Label>
+                      <Input
+                        id="viewQuotationPrice"
+                        type="number"
+                        value={viewDialogFormData.quotationPrice}
+                        onChange={(e) => handleViewDialogChange('quotationPrice', e.target.value)}
+                        placeholder="Enter quotation price"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="viewDealPrice">Deal Price</Label>
+                      <Input
+                        id="viewDealPrice"
+                        type="number"
+                        value={viewDialogFormData.dealPrice}
+                        onChange={(e) => handleViewDialogChange('dealPrice', e.target.value)}
+                        placeholder="Enter deal price"
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <div><strong>Quotation Price:</strong> {selectedCustomer.quotationPrice}</div>
+                    <div><strong>Deal Price:</strong> {selectedCustomer.dealPrice}</div>
+                  </>
+                )}
+              </div>
+
+              {/* Bank Details - Read Only */}
+              <div className="border-b pb-4">
+                <h3 className="font-semibold text-lg mb-3">Bank Details</h3>
+                <div><strong>Bank Account:</strong> {selectedCustomer.bankAccountNumber}</div>
+                <div><strong>IFSC:</strong> {selectedCustomer.bankIfscCode}</div>
+                <div><strong>Bank Name:</strong> {selectedCustomer.bankName}</div>
+                <div><strong>Bank Address:</strong> {selectedCustomer.bankAddress}</div>
+              </div>
+
+              {/* Action Buttons */}
+              {isViewDialogEditing && (
+                <div className="flex gap-3 pt-4 border-t">
+                  <Button
+                    onClick={handleSaveViewDialogChanges}
+                    className="bg-primary hover:bg-primary/90"
+                  >
+                    Save Changes
+                  </Button>
+                  <Button
+                    onClick={() => setIsViewDialogEditing(false)}
+                    variant="outline"
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              )}
             </div>
           )}
         </DialogContent>
