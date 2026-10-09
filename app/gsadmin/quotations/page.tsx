@@ -269,6 +269,7 @@ export default function QuotationPage() {
   const [isEmployee, setIsEmployee] = useState(false);
   const [employeeData, setEmployeeData] = useState<any>(null);
   const [quotations, setQuotations] = useState<Quotation[]>([]);
+  const [quotationSearch, setQuotationSearch] = useState('');
   const [isPrinting, setIsPrinting] = useState(false);
   const [selectedQuotation, setSelectedQuotation] = useState<Quotation | null>(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -300,6 +301,10 @@ export default function QuotationPage() {
 
 
   const { isLoading, submitForm } = useFormSubmit();
+
+  const filteredQuotations = quotations.filter(quotation =>
+    `${quotation.customerName} ${quotation.mobileNumber}`.toLowerCase().includes(quotationSearch.trim().toLowerCase())
+  );
 
   useEffect(() => {
     return () => {
@@ -1031,10 +1036,20 @@ export default function QuotationPage() {
       {/* QUOTATIONS TABLE - Visible to both admins and employees */}
       <div className="max-w-7xl mx-auto bg-white p-6 shadow mt-6">
         <h2 className="text-2xl font-bold mb-4">Saved Quotations</h2>
+        <div className="mb-4 max-w-md">
+          <input
+            type="search"
+            aria-label="Search quotations by customer"
+            placeholder="Search by customer name or mobile number"
+            value={quotationSearch}
+            onChange={(event) => setQuotationSearch(event.target.value)}
+            className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
 
         {/* Mobile View */}
         <div className="block md:hidden space-y-4">
-          {quotations.map((quotation, index) => (
+          {filteredQuotations.map((quotation, index) => (
             <div key={quotation.id} className="border rounded-lg p-4">
               <div className="flex justify-between items-start mb-2">
                 <div>
@@ -1094,7 +1109,7 @@ export default function QuotationPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {quotations.map((quotation, index) => (
+              {filteredQuotations.map((quotation, index) => (
                 <TableRow key={quotation.id}>
                   <TableCell>{index + 1}</TableCell>
                   <TableCell>{quotation.quotationNo}</TableCell>
@@ -1145,8 +1160,10 @@ export default function QuotationPage() {
           </Table>
         </div>
 
-        {quotations.length === 0 && (
-          <p className="text-center text-gray-500 py-8">No quotations saved yet.</p>
+        {filteredQuotations.length === 0 && (
+          <p className="text-center text-gray-500 py-8">
+            {quotationSearch.trim() ? 'No quotations match your search.' : 'No quotations saved yet.'}
+          </p>
         )}
       </div>
     </div>

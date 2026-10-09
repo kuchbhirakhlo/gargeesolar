@@ -55,6 +55,7 @@ export default function AdminCustomersPage() {
   const [isViewDialogEditing, setIsViewDialogEditing] = useState(false);
   const [viewDialogFormData, setViewDialogFormData] = useState<Customer | null>(null);
   const [selectedEmployeeFilter, setSelectedEmployeeFilter] = useState<string>('all');
+  const [customerSearch, setCustomerSearch] = useState('');
   const { isLoading, submitForm } = useFormSubmit();
   const [formData, setFormData] = useState({
     systemType: '',
@@ -139,7 +140,8 @@ export default function AdminCustomersPage() {
     return () => unsubscribe();
   }, []);
 
-  const filteredCustomers = isEmployee ? customers : (selectedEmployeeFilter !== 'all' ? customers.filter(c => c.createdBy === selectedEmployeeFilter) : customers);
+  const filteredCustomers = (isEmployee ? customers : (selectedEmployeeFilter !== 'all' ? customers.filter(c => c.createdBy === selectedEmployeeFilter) : customers))
+    .filter(customer => `${customer.customerName} ${customer.mobileNumber}`.toLowerCase().includes(customerSearch.trim().toLowerCase()));
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -825,6 +827,15 @@ export default function AdminCustomersPage() {
           <CardTitle>Customer List</CardTitle>
         </CardHeader>
         <CardContent>
+          <div className="mb-4 max-w-md">
+            <Input
+              type="search"
+              aria-label="Search customers"
+              placeholder="Search by customer name or mobile number"
+              value={customerSearch}
+              onChange={(event) => setCustomerSearch(event.target.value)}
+            />
+          </div>
           {/* Mobile Card View */}
           <div className="block md:hidden space-y-4">
             {filteredCustomers.map((customer, index) => (
@@ -865,7 +876,6 @@ export default function AdminCustomersPage() {
               </Card>
             ))}
           </div>
-
           {/* Desktop Table View */}
           <div className="hidden md:block overflow-x-auto">
             <Table>
@@ -909,6 +919,11 @@ export default function AdminCustomersPage() {
               </TableBody>
             </Table>
           </div>
+          {filteredCustomers.length === 0 && (
+            <p className="py-8 text-center text-muted-foreground">
+              {customerSearch.trim() ? 'No customers match your search.' : 'No customers found.'}
+            </p>
+          )}
         </CardContent>
       </Card>
 
